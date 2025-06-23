@@ -1,4 +1,4 @@
-name: Package and Release
+name: Release
 
 on:
   push:
@@ -7,7 +7,7 @@ on:
   workflow_dispatch:  # Allows manual trigger
 
 jobs:
-  package-and-release:
+  release:
     runs-on: ubuntu-latest
     
     steps:
@@ -23,18 +23,31 @@ jobs:
           echo "version=1.0.0" >> $GITHUB_OUTPUT
         fi
         
+    - name: Verify Release folder is ready
+      run: |
+        echo "📁 Checking Release folder contents..."
+        ls -la Release/
+        
+        # Check required files exist
+        required_files=("manifest.json" "README.md" "BagsForEveryone.dll")
+        for file in "${required_files[@]}"; do
+          if [ ! -f "Release/$file" ]; then
+            echo "❌ Missing required file: Release/$file"
+            echo "Please build locally and ensure Release/ folder is complete before creating a release."
+            exit 1
+          else
+            echo "✅ Found: Release/$file"
+          fi
+        done
+        
+        # Check DLL size
+        DLL_SIZE=$(stat -c%s "Release/BagsForEveryone.dll")
+        echo "📊 BagsForEveryone.dll size: $DLL_SIZE bytes"
+        
     - name: Update manifest version
       run: |
         sed -i 's/"version_number": ".*"/"version_number": "${{ steps.get_version.outputs.version }}"/' Release/manifest.json
-        
-    - name: Verify DLL exists
-      run: |
-        if [ ! -f Release/BagsForEveryone.dll ]; then
-          echo "❌ Error: BagsForEveryone.dll not found in Release folder!"
-          echo "Please compile locally and copy the DLL to Release/ before creating a release."
-          exit 1
-        fi
-        echo "✅ DLL found in Release folder"
+        echo "✅ Updated manifest.json to version ${{ steps.get_version.outputs.version }}"
         
     - name: Create Thunderstore package
       run: |
@@ -48,9 +61,8 @@ jobs:
         cp Release/manifest.json thunderstore-package/
         cp Release/README.md thunderstore-package/
         
-        # Create a simple icon if none exists
+        # Create icon if none exists
         if [ ! -f Release/icon.png ]; then
-          # Create a 256x256 placeholder icon using ImageMagick
           sudo apt-get update
           sudo apt-get install -y imagemagick
           convert -size 256x256 xc:'#4CAF50' -gravity center -pointsize 48 -fill white -annotate +0+0 'B4E' Release/icon.png
@@ -64,9 +76,9 @@ jobs:
         zip -r ../BagsForEveryone-${{ steps.get_version.outputs.version }}.zip .
         cd ..
         
-    - name: Verify package contents
+    - name: Verify package structure
       run: |
-        echo "📦 Package contents:"
+        echo "📦 Final package structure:"
         unzip -l BagsForEveryone-${{ steps.get_version.outputs.version }}.zip
         
     - name: Create GitHub Release
@@ -77,23 +89,27 @@ jobs:
           Release/BagsForEveryone.dll
         name: "Bags For Everyone v${{ steps.get_version.outputs.version }}"
         body: |
-          ## Bags For Everyone v${{ steps.get_version.outputs.version }}
+          ## 🎒 Bags For Everyone v${{ steps.get_version.outputs.version }}
           
           A minimalist mod that automatically spawns backpacks for all players when starting a game.
           
           ### 🚀 Installation
-          - **Thunderstore**: Download and install via mod manager
-          - **Manual**: Extract `BagsForEveryone.dll` to `BepInEx/plugins/BagsForEveryone/`
+          
+          **Thunderstore (Recommended):**
+          - Download and install via r2modman or Thunderstore Mod Manager
+          
+          **Manual Installation:**
+          - Extract `BagsForEveryone.dll` to `BepInEx/plugins/BagsForEveryone/`
           
           ### 📁 Files
-          - `BagsForEveryone-${{ steps.get_version.outputs.version }}.zip` - Thunderstore package (ready to upload)
+          - `BagsForEveryone-${{ steps.get_version.outputs.version }}.zip` - Complete Thunderstore package
           - `BagsForEveryone.dll` - Manual installation file
           
-          ### 🎒 Features
+          ### ✨ Features
           - Automatic backpack spawning for all players
           - Smart scene detection (only in game levels)
           - Mid-game player support
-          - Zero configuration required
+          - Zero configuration required - just install and play!
         draft: false
         prerelease: false
       env:

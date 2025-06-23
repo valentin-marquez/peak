@@ -1,7 +1,6 @@
 # Build outputs
 bin/
 obj/
-*.dll
 *.pdb
 *.cache
 
@@ -29,6 +28,9 @@ thunderstore-package/
 
 # Keep Release structure but ignore temporary build folders
 Release/BagsForEveryone-*/
+
+# Allow DLL only in Release folder (exception to *.dll rule above)
+!Release/BagsForEveryone.dll
 
 # Keep these Release files
 !Release/manifest.json
