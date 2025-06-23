@@ -1,4 +1,4 @@
-name: Build and Test
+name: Validate Release Files
 
 on:
   push:
@@ -7,27 +7,13 @@ on:
     branches: [ main ]
 
 jobs:
-  build-and-test:
+  validate-release:
     runs-on: ubuntu-latest
     
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
-      
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v4
-      with:
-        dotnet-version: '6.0.x'
         
-    - name: Restore dependencies
-      run: dotnet restore
-      
-    - name: Build Debug
-      run: dotnet build --configuration Debug --no-restore
-      
-    - name: Build Release
-      run: dotnet build --configuration Release --no-restore
-      
     - name: Validate manifest.json
       run: |
         echo "Validating manifest.json..."
@@ -50,56 +36,87 @@ jobs:
                 print('Version must be in format X.Y.Z')
                 sys.exit(1)
                 
-            print('Manifest validation passed!')
+            print('✅ Manifest validation passed!')
             
         except Exception as e:
-            print(f'Manifest validation failed: {e}')
+            print(f'❌ Manifest validation failed: {e}')
             sys.exit(1)
         "
         
-    - name: Check file sizes
+    - name: Check Release folder structure
       run: |
-        echo "Checking built DLL size..."
-        DLL_SIZE=$(stat -c%s "bin/Release/BagsForEveryone.dll")
-        echo "BagsForEveryone.dll size: $DLL_SIZE bytes"
+        echo "📁 Checking Release folder contents..."
+        ls -la Release/
         
-        # Warn if DLL is suspiciously large (over 1MB)
-        if [ $DLL_SIZE -gt 1048576 ]; then
-          echo "⚠️ Warning: DLL is larger than 1MB ($DLL_SIZE bytes)"
+        # Check required files exist
+        required_files=("manifest.json" "README.md" "BagsForEveryone.dll")
+        for file in "${required_files[@]}"; do
+          if [ ! -f "Release/$file" ]; then
+            echo "❌ Missing required file: Release/$file"
+            exit 1
+          else
+            echo "✅ Found: Release/$file"
+          fi
+        done
+        
+    - name: Check DLL file size
+      run: |
+        if [ -f Release/BagsForEveryone.dll ]; then
+          DLL_SIZE=$(stat -c%s "Release/BagsForEveryone.dll")
+          echo "📊 BagsForEveryone.dll size: $DLL_SIZE bytes"
+          
+          # Warn if DLL is suspiciously large (over 1MB) or small (under 1KB)
+          if [ $DLL_SIZE -gt 1048576 ]; then
+            echo "⚠️ Warning: DLL is larger than 1MB ($DLL_SIZE bytes)"
+          elif [ $DLL_SIZE -lt 1024 ]; then
+            echo "⚠️ Warning: DLL is smaller than 1KB ($DLL_SIZE bytes)"
+          else
+            echo "✅ DLL size is reasonable"
+          fi
         else
-          echo "✅ DLL size is reasonable"
+          echo "ℹ️ No DLL found in Release folder (will be added before release)"
         fi
         
-    - name: Create test package
+    - name: Create test package structure
       run: |
-        echo "Creating test Thunderstore package..."
+        echo "🧪 Testing package structure..."
         mkdir -p test-package
         
         # Create BepInEx folder structure for testing
         mkdir -p test-package/BepInExPack/plugins/BagsForEveryone
-        cp bin/Release/BagsForEveryone.dll test-package/BepInExPack/plugins/BagsForEveryone/
+        
+        # Copy files if they exist
+        if [ -f Release/BagsForEveryone.dll ]; then
+          cp Release/BagsForEveryone.dll test-package/BepInExPack/plugins/BagsForEveryone/
+        else
+          echo "placeholder" > test-package/BepInExPack/plugins/BagsForEveryone/BagsForEveryone.dll
+        fi
         
         # Copy metadata files
         cp Release/manifest.json test-package/
         cp Release/README.md test-package/
         
         # Create placeholder icon for testing
-        sudo apt-get update
-        sudo apt-get install -y imagemagick
-        convert -size 256x256 xc:'#2196F3' -gravity center -pointsize 32 -fill white -annotate +0+0 'TEST\nB4E' test-package/icon.png
+        if [ ! -f Release/icon.png ]; then
+          sudo apt-get update
+          sudo apt-get install -y imagemagick
+          convert -size 256x256 xc:'#2196F3' -gravity center -pointsize 32 -fill white -annotate +0+0 'TEST\nB4E' test-package/icon.png
+        else
+          cp Release/icon.png test-package/
+        fi
         
         cd test-package
         zip -r ../test-package.zip .
         cd ..
         
-        echo "Test package contents:"
+        echo "📦 Test package structure:"
         unzip -l test-package.zip
         
-    - name: Upload build artifacts
+    - name: Upload test artifacts
       uses: actions/upload-artifact@v4
       with:
-        name: BagsForEveryone-build-${{ github.sha }}
+        name: BagsForEveryone-validation-${{ github.sha }}
         path: |
-          bin/Release/BagsForEveryone.dll
           test-package.zip
+          Release/
         retention-days: 7

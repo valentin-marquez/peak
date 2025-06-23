@@ -109,6 +109,7 @@
 
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
     <Exec Command="copy &quot;$(TargetPath)&quot; &quot;D:\SteamLibrary\steamapps\common\PEAK\BepInEx\plugins\&quot;" ContinueOnError="true" />
+    <Exec Command="copy &quot;$(TargetPath)&quot; &quot;$(ProjectDir)Release\&quot;" ContinueOnError="true" />
   </Target>
 
 </Project>

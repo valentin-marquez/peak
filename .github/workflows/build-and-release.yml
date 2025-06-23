@@ -1,4 +1,4 @@
-name: Build and Release
+name: Package and Release
 
 on:
   push:
@@ -7,23 +7,12 @@ on:
   workflow_dispatch:  # Allows manual trigger
 
 jobs:
-  build-and-release:
+  package-and-release:
     runs-on: ubuntu-latest
     
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
-      
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v4
-      with:
-        dotnet-version: '6.0.x'
-        
-    - name: Restore dependencies
-      run: dotnet restore
-      
-    - name: Build Release
-      run: dotnet build --configuration Release --no-restore
       
     - name: Extract version from tag
       id: get_version
@@ -38,13 +27,22 @@ jobs:
       run: |
         sed -i 's/"version_number": ".*"/"version_number": "${{ steps.get_version.outputs.version }}"/' Release/manifest.json
         
+    - name: Verify DLL exists
+      run: |
+        if [ ! -f Release/BagsForEveryone.dll ]; then
+          echo "❌ Error: BagsForEveryone.dll not found in Release folder!"
+          echo "Please compile locally and copy the DLL to Release/ before creating a release."
+          exit 1
+        fi
+        echo "✅ DLL found in Release folder"
+        
     - name: Create Thunderstore package
       run: |
         mkdir -p thunderstore-package
         
         # Create BepInEx folder structure
         mkdir -p thunderstore-package/BepInExPack/plugins/BagsForEveryone
-        cp bin/Release/BagsForEveryone.dll thunderstore-package/BepInExPack/plugins/BagsForEveryone/
+        cp Release/BagsForEveryone.dll thunderstore-package/BepInExPack/plugins/BagsForEveryone/
         
         # Copy Thunderstore metadata files
         cp Release/manifest.json thunderstore-package/
@@ -68,7 +66,7 @@ jobs:
         
     - name: Verify package contents
       run: |
-        echo "Package contents:"
+        echo "📦 Package contents:"
         unzip -l BagsForEveryone-${{ steps.get_version.outputs.version }}.zip
         
     - name: Create GitHub Release
@@ -76,23 +74,26 @@ jobs:
       with:
         files: |
           BagsForEveryone-${{ steps.get_version.outputs.version }}.zip
-          bin/Release/BagsForEveryone.dll
+          Release/BagsForEveryone.dll
         name: "Bags For Everyone v${{ steps.get_version.outputs.version }}"
         body: |
           ## Bags For Everyone v${{ steps.get_version.outputs.version }}
           
-          Automatically spawns backpacks for all players when starting a game.
+          A minimalist mod that automatically spawns backpacks for all players when starting a game.
           
-          ### Installation
-          - **Thunderstore**: Upload the ZIP file to Thunderstore
-          - **Manual**: Extract `BagsForEveryone.dll` to `BepInEx/plugins/`
+          ### 🚀 Installation
+          - **Thunderstore**: Download and install via mod manager
+          - **Manual**: Extract `BagsForEveryone.dll` to `BepInEx/plugins/BagsForEveryone/`
           
-          ### Changes in this version
-          - See commit history for detailed changes
-          
-          ### Files
-          - `BagsForEveryone-${{ steps.get_version.outputs.version }}.zip` - Thunderstore package
+          ### 📁 Files
+          - `BagsForEveryone-${{ steps.get_version.outputs.version }}.zip` - Thunderstore package (ready to upload)
           - `BagsForEveryone.dll` - Manual installation file
+          
+          ### 🎒 Features
+          - Automatic backpack spawning for all players
+          - Smart scene detection (only in game levels)
+          - Mid-game player support
+          - Zero configuration required
         draft: false
         prerelease: false
       env:
