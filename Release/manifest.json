@@ -1,0 +1,9 @@
+{
+    "name": "BagsForEveryone",
+    "version_number": "1.0.0",
+    "website_url": "https://github.com/valentin-marquez/BagsForEveryone",
+    "description": "Automatically spawns backpacks for all players when starting a game. No more forgetting your bags!",
+    "dependencies": [
+        "BepInEx-BepInExPack-5.4.2100"
+    ]
+}

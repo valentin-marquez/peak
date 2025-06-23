@@ -1,0 +1,36 @@
+# Build outputs
+bin/
+obj/
+*.dll
+*.pdb
+*.cache
+
+# Visual Studio / Rider
+.vs/
+.idea/
+*.user
+*.suo
+
+# Temporary files
+*.tmp
+*.temp
+
+# Logs
+*.log
+
+# OS files
+Thumbs.db
+.DS_Store
+
+# GitHub Actions artifacts
+test-package/
+thunderstore-package/
+*.zip
+
+# Keep Release structure but ignore temporary build folders
+Release/BagsForEveryone-*/
+
+# Keep these Release files
+!Release/manifest.json
+!Release/README.md
+!Release/icon.png

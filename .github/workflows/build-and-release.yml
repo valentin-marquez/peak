@@ -1,0 +1,99 @@
+name: Build and Release
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'  # Triggers on version tags like v1.0.0
+  workflow_dispatch:  # Allows manual trigger
+
+jobs:
+  build-and-release:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: '6.0.x'
+        
+    - name: Restore dependencies
+      run: dotnet restore
+      
+    - name: Build Release
+      run: dotnet build --configuration Release --no-restore
+      
+    - name: Extract version from tag
+      id: get_version
+      run: |
+        if [[ "${{ github.ref }}" =~ refs/tags/v([0-9]+\.[0-9]+\.[0-9]+) ]]; then
+          echo "version=${BASH_REMATCH[1]}" >> $GITHUB_OUTPUT
+        else
+          echo "version=1.0.0" >> $GITHUB_OUTPUT
+        fi
+        
+    - name: Update manifest version
+      run: |
+        sed -i 's/"version_number": ".*"/"version_number": "${{ steps.get_version.outputs.version }}"/' Release/manifest.json
+        
+    - name: Create Thunderstore package
+      run: |
+        mkdir -p thunderstore-package
+        
+        # Create BepInEx folder structure
+        mkdir -p thunderstore-package/BepInExPack/plugins/BagsForEveryone
+        cp bin/Release/BagsForEveryone.dll thunderstore-package/BepInExPack/plugins/BagsForEveryone/
+        
+        # Copy Thunderstore metadata files
+        cp Release/manifest.json thunderstore-package/
+        cp Release/README.md thunderstore-package/
+        
+        # Create a simple icon if none exists
+        if [ ! -f Release/icon.png ]; then
+          # Create a 256x256 placeholder icon using ImageMagick
+          sudo apt-get update
+          sudo apt-get install -y imagemagick
+          convert -size 256x256 xc:'#4CAF50' -gravity center -pointsize 48 -fill white -annotate +0+0 'B4E' Release/icon.png
+        fi
+        
+        cp Release/icon.png thunderstore-package/
+        
+    - name: Create ZIP package
+      run: |
+        cd thunderstore-package
+        zip -r ../BagsForEveryone-${{ steps.get_version.outputs.version }}.zip .
+        cd ..
+        
+    - name: Verify package contents
+      run: |
+        echo "Package contents:"
+        unzip -l BagsForEveryone-${{ steps.get_version.outputs.version }}.zip
+        
+    - name: Create GitHub Release
+      uses: softprops/action-gh-release@v1
+      with:
+        files: |
+          BagsForEveryone-${{ steps.get_version.outputs.version }}.zip
+          bin/Release/BagsForEveryone.dll
+        name: "Bags For Everyone v${{ steps.get_version.outputs.version }}"
+        body: |
+          ## Bags For Everyone v${{ steps.get_version.outputs.version }}
+          
+          Automatically spawns backpacks for all players when starting a game.
+          
+          ### Installation
+          - **Thunderstore**: Upload the ZIP file to Thunderstore
+          - **Manual**: Extract `BagsForEveryone.dll` to `BepInEx/plugins/`
+          
+          ### Changes in this version
+          - See commit history for detailed changes
+          
+          ### Files
+          - `BagsForEveryone-${{ steps.get_version.outputs.version }}.zip` - Thunderstore package
+          - `BagsForEveryone.dll` - Manual installation file
+        draft: false
+        prerelease: false
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
