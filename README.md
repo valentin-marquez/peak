@@ -1,4 +1,4 @@
-# PEAK Mods
+# ⛰️ PEAK Mods
 
 <div align="center">
 
@@ -8,6 +8,8 @@
 [![BepInEx](https://img.shields.io/badge/BepInEx-5.x-green)](https://github.com/BepInEx/BepInEx)
 
 *Modern monorepo for BepInEx mods for [PEAK](https://store.steampowered.com/app/3527290/PEAK/)*
+
+*Collection of mods made by me for the game PEAK*
 
 </div>
 
