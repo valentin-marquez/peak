@@ -1,0 +1,51 @@
+{
+    "name": "peak-mods",
+    "version": "1.0.0",
+    "description": "Modern monorepo for all my BepInEx mods for PEAK",
+    "private": true,
+    "workspaces": [
+        "mods/*",
+        "packages/*"
+    ],
+    "scripts": {
+        "build": "turbo run build",
+        "build:mod": "turbo run build --filter",
+        "@peak/build": "node packages/build-tools/cli.js",
+        "peak": "bun run @peak/build",
+        "peak:build": "bun run @peak/build build",
+        "peak:package": "bun run @peak/build package",
+        "peak:release": "bun run @peak/build release",
+        "peak:validate": "bun run @peak/build validate",
+        "peak:list": "bun run @peak/build list",
+        "peak:clean": "bun run @peak/build clean",
+        "peak:init": "bun run @peak/build init",
+        "dev": "turbo run dev",
+        "clean": "turbo run clean",
+        "lint": "turbo run lint",
+        "test": "turbo run test",
+        "release": "bun run packages/build-tools/scripts/release.js",
+        "create-mod": "bun run packages/build-tools/scripts/create-mod.js",
+        "setup": "bun install && bun run build"
+    },
+    "devDependencies": {
+        "@types/node": "^20.10.0",
+        "turbo": "^1.11.0",
+        "typescript": "^5.3.0",
+        "chalk": "^5.3.0",
+        "inquirer": "^9.2.0",
+        "@types/inquirer": "^9.0.0",
+        "commander": "^11.1.0",
+        "semver": "^7.5.0",
+        "@types/semver": "^7.5.0",
+        "fast-glob": "^3.3.0",
+        "fs-extra": "^11.2.0",
+        "@types/fs-extra": "^11.0.0",
+        "archiver": "^6.0.0",
+        "@types/archiver": "^6.0.0"
+    },
+    "packageManager": "bun@1.0.0",
+    "engines": {
+        "node": ">=18.0.0",
+        "bun": ">=1.0.0"
+    }
+}

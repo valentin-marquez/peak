@@ -1,0 +1,294 @@
+# Peak Mods Monorepo - Comprehensive .gitignore
+
+# =============================================================================
+# PEAK MOD BUILD OUTPUTS
+# =============================================================================
+
+# C# Build outputs
+bin/
+obj/
+# NuGet packages (but allow our monorepo packages/ directory)
+**/packages/
+!packages/
+*.dll.mdb
+*.pdb
+*.cache
+*.userprefs
+
+# Generated DLLs in Release directories (auto-generated content)
+mods/*/Release/*.dll
+mods/*/bin/
+mods/*/obj/
+
+# =============================================================================
+# DISTRIBUTION & PACKAGING
+# =============================================================================
+
+# Build and distribution directories
+dist/
+packages-dist/
+release/
+*.zip
+
+# Temporary packaging files
+temp-package/
+*.tmp
+*.temp
+*~
+
+# =============================================================================
+# NODE.JS / BUN ECOSYSTEM
+# =============================================================================
+
+# Dependencies
+node_modules/
+.pnp/
+.pnp.js
+.yarn/
+
+# Lock files (bun.lockb is kept, others ignored)
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+yarn.lock
+package-lock.json
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Coverage directory used by tools like istanbul
+coverage/
+*.lcov
+
+# nyc test coverage
+.nyc_output
+
+# =============================================================================
+# TURBO REPO
+# =============================================================================
+
+# Turbo
+.turbo/
+
+# =============================================================================
+# DEVELOPMENT ENVIRONMENTS
+# =============================================================================
+
+# Visual Studio / VS Code
+.vs/
+.vscode/settings.json
+.vscode/launch.json
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# JetBrains IDEs
+.idea/
+*.sln.iml
+
+# =============================================================================
+# SYSTEM FILES
+# =============================================================================
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+*.cab
+*.msi
+*.msm
+*.msp
+*.lnk
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon?
+._*
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
+
+# Linux
+*~
+.fuse_hidden*
+.directory
+.Trash-*
+.nfs*
+
+# =============================================================================
+# BEPINEX & GAME FILES
+# =============================================================================
+
+# BepInEx directories (if accidentally included)
+BepInEx/
+PEAK_Data/
+
+# Game logs
+LogOutput.log
+Player.log
+Player-prev.log
+
+# =============================================================================
+# DEVELOPMENT & TESTING
+# =============================================================================
+
+# Test results
+TestResults/
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+x64/
+x86/
+[Ww][Ii][Nn]32/
+[Aa][Rr][Mm]/
+[Aa][Rr][Mm]64/
+bld/
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+[Ll]ogs/
+
+# MSTest test Results
+[Tt]est[Rr]esult*/
+[Bb]uild[Ll]og.*
+
+# NUnit
+*.VisualState.xml
+TestResult.xml
+nunit-*.xml
+
+# =============================================================================
+# CONFIGURATION & SECRETS
+# =============================================================================
+
+# Local developer configuration
+local.settings.json
+appsettings.local.json
+config.local.json
+
+# Environment variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# =============================================================================
+# GENERATED FILES
+# =============================================================================
+
+# Auto-generated files
+*.Generated.cs
+*Generated.cs
+*.g.cs
+*.g.i.cs
+
+# Roslyn generated files
+**/Generated_Files/
+
+# =============================================================================
+# PACKAGE MANAGERS & TOOLS
+# =============================================================================
+
+# NuGet
+*.nupkg
+*.snupkg
+.nuget/
+
+# Paket dependency manager
+.paket/paket.exe
+paket-files/
+
+# FAKE - F# Make
+.fake/
+
+# =============================================================================
+# MISC
+# =============================================================================
+
+# Logs
+*.log
+logs/
+
+# Runtime data
+pids/
+*.pid
+*.seed
+*.pid.lock
+
+# Backup files
+*.bak
+*.backup
+*.old
+
+# Temporary files
+*.swp
+*.swo
+
+# =============================================================================
+# KEEP THESE FILES (EXPLICITLY NOT IGNORED)
+# =============================================================================
+
+# Keep important configuration files
+!Directory.Build.props
+!NuGet.Config
+!turbo.json
+!tsconfig.json
+!bun.lockb
+
+# Keep package.json files
+!package.json
+!packages/*/package.json
+!mods/*/package.json
+
+# Keep manifest files for mods
+!mods/*/manifest.json
+
+# Keep README files
+!README.md
+!mods/*/README.md
+!packages/*/README.md
+
+# Keep essential project files
+!*.csproj
+!*.sln
+
+# Keep GitHub workflows and configurations
+!.github/
+!.github/**
+
+# Keep VSCode workspace configuration
+!.vscode/extensions.json
+!.vscode/tasks.json
+
+# =============================================================================
+# NOTES
+# =============================================================================
+# This .gitignore covers:
+# - C# / .NET development
+# - Node.js / Bun ecosystem
+# - TurboRepo monorepo management
+# - BepInEx mod development
+# - Build tools and packaging
+# - Cross-platform development
+# - Generated files and dependencies
+#
+# Developer-specific paths in Directory.Build.props should be configured
+# locally but the file structure is tracked for consistency.

@@ -1,0 +1,34 @@
+{
+    "name": "@peak/build",
+    "version": "1.0.0",
+    "description": "Build tools and scripts for PEAK mods",
+    "type": "module",
+    "bin": {
+        "peak-build": "./cli.js"
+    },
+    "scripts": {
+        "build": "echo 'Build tools ready'",
+        "build-mod": "node scripts/build-mod.js",
+        "package-mod": "node scripts/package-mod.js",
+        "optimize-icon": "node scripts/optimize-icon.js",
+        "validate-thunderstore": "node scripts/validate-thunderstore.js"
+    },
+    "dependencies": {
+        "fs-extra": "^11.2.0",
+        "sharp": "^0.33.0",
+        "archiver": "^6.0.1",
+        "chalk": "^5.3.0",
+        "commander": "^11.1.0",
+        "node-stream-zip": "^1.15.0",
+        "zlib": "^1.0.5"
+    },
+    "devDependencies": {},
+    "keywords": [
+        "peak",
+        "modding",
+        "build",
+        "tools"
+    ],
+    "author": "Peak Modding Team",
+    "license": "MIT"
+}

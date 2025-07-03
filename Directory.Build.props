@@ -1,0 +1,37 @@
+<Project>
+  <PropertyGroup>
+    <!-- Configuración global para mods de PEAK -->
+    <TargetFramework>net462</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    
+    <!-- Información del autor -->
+    <Authors>Nozz (Valentin Marquez)</Authors>
+    <Company>Nozz</Company>
+    <Copyright>Copyright © 2025 Nozz</Copyright>
+    
+    <!-- Rutas del juego -->
+    <PeakGamePath Condition="'$(PeakGamePath)' == ''">D:\SteamLibrary\steamapps\common\PEAK</PeakGamePath>
+    <BepInExPath>$(PeakGamePath)\BepInEx</BepInExPath>
+    <ManagedPath>$(PeakGamePath)\PEAK_Data\Managed</ManagedPath>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)' == 'Release'">
+    <DebugType>none</DebugType>
+    <DebugSymbols>false</DebugSymbols>
+    <Optimize>true</Optimize>
+  </PropertyGroup>
+
+  <!-- Referencias básicas de BepInEx -->
+  <ItemGroup>
+    <Reference Include="BepInEx">
+      <HintPath>$(BepInExPath)\core\BepInEx.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+  </ItemGroup>
+
+  <!-- Suprimir advertencias comunes de Unity -->
+  <PropertyGroup>
+    <NoWarn>$(NoWarn);CS0618;CS0649;CS0169</NoWarn>
+  </PropertyGroup>
+</Project>
