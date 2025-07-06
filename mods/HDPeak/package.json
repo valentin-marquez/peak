@@ -20,11 +20,11 @@
   ],
   "private": true,
   "scripts": {
-    "build": "@peak/build build HDPeak",
-    "package": "@peak/build package HDPeak",
-    "release": "@peak/build release HDPeak",
-    "validate": "@peak/build validate HDPeak",
-    "clean": "@peak/build clean"
+    "build": "bun ../../packages/build-tools/cli.js build HDPeak",
+    "package": "bun ../../packages/build-tools/cli.js package HDPeak",
+    "release": "bun ../../packages/build-tools/cli.js release HDPeak",
+    "validate": "bun ../../packages/build-tools/cli.js validate HDPeak",
+    "clean": "bun ../../packages/build-tools/cli.js clean"
   },
   "dependencies": {
     "@peak/build": "workspace:*"

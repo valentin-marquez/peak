@@ -1,53 +1,26 @@
 # BagsForEveryone
 
-Minimalist mod that automatically generates backpacks for all players when starting a game in PEAK.
+Automatically spawns backpacks for all players when starting a game. No more forgetting your bags!
 
-## 🎒 Features
+## Installation
 
-- **Automatic backpack generation** - Each player receives a backpack when starting the game
-- **Smart scene detection** - Only works on real game levels (Level_0 to Level_13), not in lobby
-- **Support for mid-game joining players** - New players also receive backpacks
-- **Multiplayer compatible** - Works perfectly with Photon networking system
-- **Duplicate prevention** - Won't give multiple backpacks to the same player
-- **Zero configuration** - Works from the first moment without configuration
+1. Install BepInEx 5.4.2100+
+2. Place `BagsForEveryone.dll` in `BepInEx/plugins/`
+3. Launch PEAK
 
-## 🚀 Installation
+## Features
 
-### Automatic (Mod Manager)
+- Automatic backpack for each player
+- Works on game levels (Level_0 to Level_13)
+- Mid-game joining players also get bags
+- Multiplayer compatible
+- No configuration needed
 
-1. Install using r2modman or Thunderstore Mod Manager
-2. Launch Peak
+## Configuration
 
-### Manual
+Optional config file: `BepInEx/config/com.nozz.bagsforeveryone.cfg`
 
-1. Make sure BepInEx is installed in your Peak folder
-2. Download the latest version of the mod
-3. Extract `BagsForEveryone.dll` to `BepInEx/plugins/`
-4. Launch Peak
-
-## ⚙️ Configuration
-
-The mod has only one configuration:
-
-- **ModEnabled** (default: true) - Enable/disable automatic backpack generation
-
-Configuration file: `BepInEx/config/com.nozz.bagsforeveryone.cfg`
-
-## 🎮 How It Works
-
-The mod automatically detects when players spawn in game levels and ensures all players get exactly one backpack. It uses Peak's official object generation system and Photon networking for perfect multiplayer compatibility.
-
-Fixed settings for optimal experience:
-
-- **Spawn delay**: 2 seconds after game start
-- **Backpack quantity**: 1 per player
-- **Mid-game spawning**: Always enabled
-
-## 🔧 Development
-
-This project is part of the PEAK mods monorepo.
-
-### Build Locally
+- **ModEnabled** (default: true) - Enable/disable the mod
 
 ```bash
 dotnet build --configuration Release

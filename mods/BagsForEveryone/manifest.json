@@ -1,6 +1,6 @@
 {
   "name": "BagsForEveryone",
-  "version_number": "1.0.0",
+  "version_number": "1.0.1",
   "website_url": "https://github.com/valentin-marquez/BagsForEveryone",
   "description": "Automatically spawns backpacks for all players when starting a game. No more forgetting your bags!",
   "dependencies": [

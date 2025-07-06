@@ -1,15 +1,14 @@
 {
     "name": "@peak-mods/bagsforeveryone",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "A minimalist BepInEx mod for Peak that automatically spawns backpacks for all players when starting a game.",
     "private": true,
     "scripts": {
-        "build": "dotnet build --configuration Release",
-        "clean": "dotnet clean",
-        "dev": "dotnet build --configuration Debug && dotnet watch build --configuration Debug",
-        "lint": "echo \"Linting C# code...\"",
-        "test": "echo \"No tests configured\"",
-        "release": "bun run ../../scripts/release.ts -- BagsForEveryone"
+        "build": "bun ../../packages/build-tools/cli.js build BagsForEveryone",
+        "package": "bun ../../packages/build-tools/cli.js package BagsForEveryone",
+        "release": "bun ../../packages/build-tools/cli.js release BagsForEveryone",
+        "validate": "bun ../../packages/build-tools/cli.js validate BagsForEveryone",
+        "clean": "bun ../../packages/build-tools/cli.js clean"
     },
     "dependencies": {},
     "devDependencies": {}

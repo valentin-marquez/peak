@@ -10,6 +10,6 @@ namespace BagsForEveryone
     {
         public const string PLUGIN_GUID = "com.nozz.bagsforeveryone";
         public const string PLUGIN_NAME = "BagsForEveryone";
-        public const string PLUGIN_VERSION = "1.0.0";
+        public const string PLUGIN_VERSION = "1.0.1";
     }
 }

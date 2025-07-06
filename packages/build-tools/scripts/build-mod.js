@@ -90,9 +90,8 @@ class ModBuilder {
         // Copy additional assets
         await this.copyAssets(modPath, modDistPath);
 
-        // Generate dynamic manifest and README
+        // Generate dynamic manifest (README is now copied in copyAssets)
         await this.generateManifest(modDistPath, manifest, packageJson);
-        await this.generateReadme(modDistPath, manifest, packageJson);
 
         console.log(chalk.green(`✅ Mod built successfully: ${modDistPath}`));
         return modDistPath;
@@ -120,8 +119,15 @@ class ModBuilder {
             console.log(chalk.cyan(`📁 Optimized and copied icon.png to root (256x256)`));
         }
 
-        // Copy optional files to root if they exist
-        const rootAssets = ['README.md', 'LICENSE', 'CHANGELOG.md'];
+        // Copy README.md from mod directory if it exists, otherwise skip auto-generation
+        const readmePath = path.join(modPath, 'README.md');
+        if (await fs.pathExists(readmePath)) {
+            await fs.copy(readmePath, path.join(distPath, 'README.md'));
+            console.log(chalk.cyan(`📁 Copied README.md to root`));
+        }
+
+        // Copy other optional files to root if they exist
+        const rootAssets = ['LICENSE', 'CHANGELOG.md'];
         for (const asset of rootAssets) {
             const assetPath = path.join(modPath, asset);
             if (await fs.pathExists(assetPath)) {
