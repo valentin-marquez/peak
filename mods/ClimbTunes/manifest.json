@@ -1,0 +1,9 @@
+{
+  "name": "ClimbTunes",
+  "version_number": "1.0.0",
+  "website_url": "https://github.com/your-username/peak-mods",
+  "description": "Portable radio for mountaineers. Play your YouTube music while conquering peaks... or while rolling down the mountain. The perfect soundtrack for your epic falls!",
+  "dependencies": [
+    "BepInEx-BepInExPack-5.4.2100"
+  ]
+}

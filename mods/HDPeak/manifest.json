@@ -1,8 +1,8 @@
 {
   "name": "HDPeak",
   "version_number": "1.0.0",
-  "website_url": "https://github.com/your-username/peak-mods",
-  "description": "Advanced graphics and performance optimization mod for PEAK - Customize resolution, shadows, fog, anti-aliasing, LOD, and texture quality for optimal performance and visual quality",
+  "website_url": "https://github.com/valentin-marquez/peak/tree/main/mods/HDPeak",
+  "description": "Advanced graphics settings mod. Control shadows, anti-aliasing, textures, LOD, and more for better performance or visual quality.",
   "dependencies": [
     "BepInEx-BepInExPack-5.4.2100"
   ]

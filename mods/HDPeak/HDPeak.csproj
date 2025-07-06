@@ -2,10 +2,13 @@
 
   <PropertyGroup>
     <TargetFramework>net471</TargetFramework>
-    <AssemblyTitle>HDPeak</AssemblyTitle>
-    <AssemblyDescription>A BepInEx mod for PEAK</AssemblyDescription>
+    <AssemblyTitle>HDPeak - Advanced Graphics Settings</AssemblyTitle>
+    <AssemblyDescription>Transform your PEAK gaming experience with advanced Unity rendering controls. Fine-tune anti-aliasing, boost texture quality, optimize shadow resolution, control dynamic lighting, and master LOD settings through an intuitive in-game interface.</AssemblyDescription>
     <AssemblyVersion>1.0.0</AssemblyVersion>
     <FileVersion>1.0.0</FileVersion>
+    <AssemblyCompany>nozz</AssemblyCompany>
+    <AssemblyProduct>HDPeak</AssemblyProduct>
+    <AssemblyCopyright>Copyright © 2025 nozz</AssemblyCopyright>
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
     <RestoreAdditionalProjectSources>
       https://api.nuget.org/v3/index.json;
@@ -48,91 +51,73 @@
       <HintPath>$(PeakGamePath)\PEAK_Data\Managed\UnityEngine.PhysicsModule.dll</HintPath>
       <Private>false</Private>
     </Reference>
-    <Reference Include="UnityEngine.ProfilerModule">
-      <HintPath>$(PeakGamePath)\PEAK_Data\Managed\UnityEngine.ProfilerModule.dll</HintPath>
+    <Reference Include="UnityEngine.UI">
+      <HintPath>$(PeakGamePath)\PEAK_Data\Managed\UnityEngine.UI.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.IMGUIModule">
+      <HintPath>$(PeakGamePath)\PEAK_Data\Managed\UnityEngine.IMGUIModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.InputLegacyModule">
+      <HintPath>$(PeakGamePath)\PEAK_Data\Managed\UnityEngine.InputLegacyModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="Assembly-CSharp-firstpass">
+      <HintPath>$(PeakGamePath)\PEAK_Data\Managed\Assembly-CSharp-firstpass.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="pworld">
+      <HintPath>$(PeakGamePath)\PEAK_Data\Managed\pworld.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="Zorro.Core.Runtime">
+      <HintPath>$(PeakGamePath)\PEAK_Data\Managed\Zorro.Core.Runtime.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="Unity.Mathematics">
+      <HintPath>$(PeakGamePath)\PEAK_Data\Managed\Unity.Mathematics.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="Unity.TextMeshPro">
+      <HintPath>$(PeakGamePath)\PEAK_Data\Managed\Unity.TextMeshPro.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="Zorro.Settings.Runtime">
+      <HintPath>$(PeakGamePath)\PEAK_Data\Managed\Zorro.Settings.Runtime.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="Zorro.UI.Runtime">
+      <HintPath>$(PeakGamePath)\PEAK_Data\Managed\Zorro.UI.Runtime.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.UIElementsModule">
+      <HintPath>$(PeakGamePath)\PEAK_Data\Managed\UnityEngine.UIElementsModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+
+    <Reference Include="Unity.Localization">
+      <HintPath>$(PeakGamePath)\PEAK_Data\Managed\Unity.Localization.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+
+    <Reference Include="Sirenix.Serialization">
+      <HintPath>$(PeakGamePath)\PEAK_Data\Managed\Sirenix.Serialization.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+
+
+    <Reference Include="Unity.RenderPipelines.Universal.Runtime">
+      <HintPath>$(PeakGamePath)\PEAK_Data\Managed\Unity.RenderPipelines.Universal.Runtime.dll</HintPath>
       <Private>false</Private>
     </Reference>
   </ItemGroup>
 
+  <!-- Exclude docs folder from compilation (game decompiled shitty *.*) -->
   <ItemGroup>
-    <Reference Include="Assembly-CSharp">
-      <HintPath>$(PeakGamePath)\PEAK_Data\Managed\Assembly-CSharp.dll</HintPath>
-    </Reference>
-    <Reference Include="Assembly-CSharp-firstpass">
-      <HintPath>$(PeakGamePath)\PEAK_Data\Managed\Assembly-CSharp-firstpass.dll</HintPath>
-    </Reference>
-    <Reference Include="pworld">
-      <HintPath>$(PeakGamePath)\PEAK_Data\Managed\pworld.dll</HintPath>
-    </Reference>
-    <Reference Include="Zorro.Core.Runtime">
-      <HintPath>$(PeakGamePath)\PEAK_Data\Managed\Zorro.Core.Runtime.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.RenderPipelines.Core.Runtime">
-      <HintPath>$(PeakGamePath)\PEAK_Data\Managed\Unity.RenderPipelines.Core.Runtime.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.RenderPipelines.Universal.Runtime">
-      <HintPath>$(PeakGamePath)\PEAK_Data\Managed\Unity.RenderPipelines.Universal.Runtime.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.RenderPipelines.Universal.2D.Runtime">
-      <HintPath>$(PeakGamePath)\PEAK_Data\Managed\Unity.RenderPipelines.Universal.2D.Runtime.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.RenderPipelines.Universal.Config.Runtime">
-      <HintPath>$(PeakGamePath)\PEAK_Data\Managed\Unity.RenderPipelines.Universal.Config.Runtime.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.RenderPipelines.Universal.Shaders">
-      <HintPath>$(PeakGamePath)\PEAK_Data\Managed\Unity.RenderPipelines.Universal.Shaders.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Rendering.LightTransport.Runtime">
-      <HintPath>$(PeakGamePath)\PEAK_Data\Managed\Unity.Rendering.LightTransport.Runtime.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.RenderPipeline.Universal.ShaderLibrary">
-      <HintPath>$(PeakGamePath)\PEAK_Data\Managed\Unity.RenderPipeline.Universal.ShaderLibrary.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.RenderPipelines.Core.Runtime.Shared">
-      <HintPath>$(PeakGamePath)\PEAK_Data\Managed\Unity.RenderPipelines.Core.Runtime.Shared.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.RenderPipelines.Core.ShaderLibrary">
-      <HintPath>$(PeakGamePath)\PEAK_Data\Managed\Unity.RenderPipelines.Core.ShaderLibrary.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.RenderPipelines.GPUDriven.Runtime">
-      <HintPath>$(PeakGamePath)\PEAK_Data\Managed\Unity.RenderPipelines.GPUDriven.Runtime.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary">
-      <HintPath>$(PeakGamePath)\PEAK_Data\Managed\Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.VisualEffectGraph.Runtime">
-      <HintPath>$(PeakGamePath)\PEAK_Data\Managed\Unity.VisualEffectGraph.Runtime.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.VFXModule">
-      <HintPath>$(PeakGamePath)\PEAK_Data\Managed\UnityEngine.VFXModule.dll</HintPath>
-    </Reference>
-    <Reference Include="HBAO.Runtime">
-      <HintPath>$(PeakGamePath)\PEAK_Data\Managed\HBAO.Runtime.dll</HintPath>
-    </Reference>
-    <Reference Include="HBAO.Universal.Runtime">
-      <HintPath>$(PeakGamePath)\PEAK_Data\Managed\HBAO.Universal.Runtime.dll</HintPath>
-    </Reference>
-    <Reference Include="sc.posteffects.runtime">
-      <HintPath>$(PeakGamePath)\PEAK_Data\Managed\sc.posteffects.runtime.dll</HintPath>
-    </Reference>
-    <Reference Include="Tayx.Graphy">
-      <HintPath>$(PeakGamePath)\PEAK_Data\Managed\Tayx.Graphy.dll</HintPath>
-    </Reference>
-    <Reference Include="Ashley.MeshSplitter">
-      <HintPath>$(PeakGamePath)\PEAK_Data\Managed\Ashley.MeshSplitter.dll</HintPath>
-    </Reference>
-    <Reference Include="Whinarn.UnityMeshSimplifier.Runtime">
-      <HintPath>$(PeakGamePath)\PEAK_Data\Managed\Whinarn.UnityMeshSimplifier.Runtime.dll</HintPath>
-    </Reference>
-    <Reference Include="Zorro.AutoLOD">
-      <HintPath>$(PeakGamePath)\PEAK_Data\Managed\Zorro.AutoLOD.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Profiling.Core">
-      <HintPath>$(PeakGamePath)\PEAK_Data\Managed\Unity.Profiling.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.MemoryProfiler">
-      <HintPath>$(PeakGamePath)\PEAK_Data\Managed\Unity.MemoryProfiler.dll</HintPath>
-    </Reference>
+    <Compile Remove="docs\**" />
+    <EmbeddedResource Remove="docs\**" />
+    <None Remove="docs\**" />
   </ItemGroup>
 
   <!-- PostBuild: Copy DLL to plugins folder for testing -->

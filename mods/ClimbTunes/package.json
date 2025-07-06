@@ -1,0 +1,16 @@
+{
+  "name": "@peak-mods/climbtunes",
+  "version": "1.0.0",
+  "description": "PEAK mod: ClimbTunes",
+  "private": true,
+  "scripts": {
+    "build": "@peak/build build ClimbTunes",
+    "package": "@peak/build package ClimbTunes",
+    "release": "@peak/build release ClimbTunes",
+    "validate": "@peak/build validate ClimbTunes",
+    "clean": "@peak/build clean"
+  },
+  "dependencies": {
+    "@peak/build": "workspace:*"
+  }
+}

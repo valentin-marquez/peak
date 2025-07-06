@@ -1,9 +1,0 @@
-{
-  "name": "ClimbMap",
-  "version_number": "1.0.0",
-  "website_url": "https://github.com/valentin-marquez/peak-mods",
-  "description": "Where the hell are my friends? A vertical minimap that shows you who's winning the race to the top. Because nothing's more frustrating than climbing solo only to discover your buddy is already taking selfies at the summit. Simple, useful, and saves you from yelling 'WHERE IS EVERYONE?' into your mic. Know where you are. Know where you shouldn't be. Keep climbing.",
-  "dependencies": [
-    "BepInEx-BepInExPack-5.4.2100"
-  ]
-}

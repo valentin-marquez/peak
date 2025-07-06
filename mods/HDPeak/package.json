@@ -1,7 +1,23 @@
 {
   "name": "@peak-mods/hdpeak",
   "version": "1.0.0",
-  "description": "PEAK mod: HDPeak",
+  "description": "🎮 Advanced graphics settings mod for PEAK - Unleash your GPU's full potential with comprehensive Unity rendering controls",
+  "author": "nozz",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/valentin-marquez/peak.git",
+    "directory": "mods/HDPeak"
+  },
+  "homepage": "https://github.com/valentin-marquez/peak/tree/main/mods/HDPeak",
+  "keywords": [
+    "peak",
+    "mod",
+    "graphics",
+    "unity",
+    "rendering",
+    "performance",
+    "bepinex"
+  ],
   "private": true,
   "scripts": {
     "build": "@peak/build build HDPeak",
