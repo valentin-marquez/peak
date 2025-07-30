@@ -17,7 +17,7 @@
 
 | Mod | Version | Description | Downloads |
 |-----|---------|-------------|-----------|
-| [**BagsForEveryone**](./mods/BagsForEveryone/) | `1.0.1` | Automatically generates backpacks for all players | [Thunderstore](https://thunderstore.io/c/peak/p/Nozz/BagsForEveryone/) |
+| [**BagsForEveryone**](./mods/BagsForEveryone/) | `1.1.0` | Automatically generates backpacks for all players | [Thunderstore](https://thunderstore.io/c/peak/p/Nozz/BagsForEveryone/) |
 | [**HDPeak**](./mods/HDPeak/) | `1.0.1` | Advanced graphics settings mod. Control shadows, anti-aliasing, textures, LOD, and more for better performance or visual quality. | [Thunderstore](https://thunderstore.io/c/peak/p/Nozz/HDPeak/) |
 
 ## License
