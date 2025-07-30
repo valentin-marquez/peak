@@ -27,6 +27,12 @@ class ModBuilder {
             throw new Error(`Mod directory not found: ${modPath}`);
         }
 
+        // Validar existencia de CHANGELOG.md
+        const changelogPath = path.join(modPath, 'CHANGELOG.md');
+        if (!await fs.pathExists(changelogPath)) {
+            console.log(chalk.yellow('⚠️  Advertencia: No se encontró CHANGELOG.md en el mod.'));
+        }
+
         // Ensure dist directory exists
         await fs.ensureDir(this.distDir);
 

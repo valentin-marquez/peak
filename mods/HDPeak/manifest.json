@@ -1,6 +1,6 @@
 {
   "name": "HDPeak",
-  "version_number": "1.0.0",
+  "version_number": "1.1.0",
   "website_url": "https://github.com/valentin-marquez/peak/tree/main/mods/HDPeak",
   "description": "Advanced graphics settings mod. Control shadows, anti-aliasing, textures, LOD, and more for better performance or visual quality.",
   "dependencies": [

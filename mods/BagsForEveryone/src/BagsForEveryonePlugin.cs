@@ -47,7 +47,7 @@ namespace BagsForEveryone
         {
             // Subscribe to scene change events to reset state
             SceneManager.sceneLoaded += OnSceneLoaded;
-            
+
             // Start the main monitoring coroutine
             StartCoroutine(MonitorGameState());
         }
@@ -115,23 +115,14 @@ namespace BagsForEveryone
 
         /// <summary>
         /// Validates if we're currently in a game level where bags should be spawned.
-        /// Excludes lobby (Airport) and menu scenes, only allows Level_0 through Level_13.
+        /// Excludes lobby (Airport) and menu scenes, allows any scene that starts with "Level_".
+        /// This is dynamic and will work for future levels as well.
         /// </summary>
         private bool IsInValidGameLevel()
         {
             string sceneName = SceneManager.GetActiveScene().name;
-            
-            // Check if it's a Level_X scene (Level_0 through Level_13)
-            if (sceneName.StartsWith("Level_"))
-            {
-                string levelNumberStr = sceneName.Substring(6); // Remove "Level_" prefix
-                if (int.TryParse(levelNumberStr, out int levelNumber))
-                {
-                    return levelNumber >= 0 && levelNumber <= 13;
-                }
-            }
-            
-            return false;
+            // Accept any scene that starts with "Level_"
+            return sceneName.StartsWith("Level_");
         }
 
         /// <summary>
@@ -178,7 +169,7 @@ namespace BagsForEveryone
         {
             SpawnBagForPlayer(player);
             yield return new WaitForSeconds(0.1f);
-            
+
             // Mark this player as having received bags
             _playersWithBags.Add(player.ActorNumber);
         }
@@ -267,7 +258,7 @@ namespace BagsForEveryone
                 // Use the game's official Player.AddItem method
                 ItemSlot slot;
                 bool success = player.AddItem(backpackItemID, null, out slot);
-                
+
                 return success && slot is BackpackSlot;
             }
             catch (System.Exception ex)
@@ -296,14 +287,14 @@ namespace BagsForEveryone
                         }
                     }
                 }
-                
+
                 // Fallback: search for existing Backpack components in scene
                 var allBackpacks = FindObjectsByType<Backpack>(FindObjectsInactive.Include, FindObjectsSortMode.None);
                 if (allBackpacks.Length > 0)
                 {
                     return allBackpacks[0].itemID;
                 }
-                
+
                 return 0;
             }
             catch (System.Exception ex)
@@ -355,14 +346,14 @@ namespace BagsForEveryone
                         }
                     }
                 }
-                
+
                 // Fallback: search for existing backpack objects in scene
                 var allBackpacks = FindObjectsByType<Backpack>(FindObjectsInactive.Include, FindObjectsSortMode.None);
                 if (allBackpacks.Length > 0)
                 {
                     return allBackpacks[0].gameObject.name;
                 }
-                
+
                 return null;
             }
             catch (System.Exception ex)
@@ -379,7 +370,7 @@ namespace BagsForEveryone
         {
             // Unsubscribe from scene change events
             SceneManager.sceneLoaded -= OnSceneLoaded;
-            
+
             _playersWithBags.Clear();
         }
     }

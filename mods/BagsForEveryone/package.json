@@ -1,6 +1,6 @@
 {
     "name": "@peak-mods/bagsforeveryone",
-    "version": "1.0.1",
+    "version": "1.1.0",
     "description": "A minimalist BepInEx mod for Peak that automatically spawns backpacks for all players when starting a game.",
     "private": true,
     "scripts": {

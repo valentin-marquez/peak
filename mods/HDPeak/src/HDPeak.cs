@@ -19,7 +19,7 @@ namespace HDPeak
     {
         internal const string PLUGIN_GUID = "com.nozz.hdpeak";
         internal const string PLUGIN_NAME = "HDPeak";
-        internal const string PLUGIN_VERSION = "1.0.0";
+        internal const string PLUGIN_VERSION = "1.1.0";
     }
 
     /// <summary>
