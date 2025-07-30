@@ -10,7 +10,7 @@
     <Company>Nozz</Company>
     <Copyright>Copyright © 2025 Nozz</Copyright>
     
-    <!-- Rutas del juego -->]
+    <!-- Rutas del juego -->
     <!-- 
         NOTE: Hey @valentin-marquez, Ive changed the game path to the C drive for sake of simplicity for other collaborators in the future.
         But you can potentially use "HKEY_CURRENT_USER\Software\Valve\Steam" registry key to get the path dynamically if you want to make this repo more flexible
