@@ -9,6 +9,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using Zorro.Settings;
 using SettingsExtender;
+using HarmonyLib;
 
 namespace HDPeak
 {
@@ -30,6 +31,7 @@ namespace HDPeak
     public class HDPeakPlugin : BaseUnityPlugin
     {
         internal static new ManualLogSource Logger;
+        internal static Harmony harmony;
         private GameObject buttonSrc;
         private bool settingsAdded = false;
 
@@ -40,6 +42,10 @@ namespace HDPeak
 
             // Register custom settings page
             SettingsRegistry.Register("HDPeak");
+
+            // Initialize Harmony for patching
+            harmony = new Harmony(HDPeakPluginInfo.PLUGIN_GUID);
+            harmony.PatchAll();
         }
 
         private void Start()
@@ -65,9 +71,12 @@ namespace HDPeak
                     SettingsHandler.Instance.AddSetting(new MaxLightsSetting());
                     Logger.LogInfo("Adding Dynamic Batching setting...");
                     SettingsHandler.Instance.AddSetting(new DynamicBatchingSetting());
+                    Logger.LogInfo("Adding Culling Distance setting...");
+                    SettingsHandler.Instance.AddSetting(new CullingDistanceSetting());
+
                     settingsAdded = true;
                     Logger.LogInfo("HDPeak settings added successfully!");
-                    Logger.LogInfo("Available settings: Anti-Aliasing, Anisotropic Filtering, Texture Quality, Shadow Resolution, LOD Bias, Opaque Texture, Max Additional Lights, Dynamic Batching");
+                    Logger.LogInfo("Available settings: Anti-Aliasing, Anisotropic Filtering, Texture Quality, Shadow Resolution, LOD Bias, Opaque Texture, Max Additional Lights, Dynamic Batching, Culling Distance");
                     Logger.LogInfo($"Settings added: {settingsAdded}");
                 }
                 catch (Exception ex)
