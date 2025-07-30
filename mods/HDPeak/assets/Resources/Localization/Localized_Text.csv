@@ -1,0 +1,37 @@
+KEY,English,French,Italian,German,SpanishSpain,SpanishLatam,BRPortuguese,Russian,Ukrainian,SimplifiedChinese,TraditionalChinese,Japanese,Korean
+HDPEAK_TAB,HDPeak,HDPeak,HDPeak,HDPeak,HDPeak,HDPeak,HDPeak,HDPeak,HDPeak,HDPeak,HDPeak,HDPeak,HDPeak
+HDPEAK_ANTIALIASING,Anti-Aliasing,Anticrénelage,Antialiasing,Antialiasing,Antialiasing,Antialiasing,Anti-Aliasing,Сглаживание,Згладжування,抗锯齿,抗鋸齒,アンチエイリアス,안티앨리어싱
+HDPEAK_ANTIALIASING_OFF,Off,Désactivé,Disattivato,Aus,Desactivado,Desactivado,Desligado,Выкл,Вимкнено,关闭,關閉,オフ,끔
+HDPEAK_ANTIALIASING_MSAA2X,MSAA 2x,MSAA 2x,MSAA 2x,MSAA 2x,MSAA 2x,MSAA 2x,MSAA 2x,MSAA 2x,MSAA 2x,MSAA 2x,MSAA 2x,MSAA 2x,MSAA 2x
+HDPEAK_ANTIALIASING_MSAA4X,MSAA 4x,MSAA 4x,MSAA 4x,MSAA 4x,MSAA 4x,MSAA 4x,MSAA 4x,MSAA 4x,MSAA 4x,MSAA 4x,MSAA 4x,MSAA 4x,MSAA 4x
+HDPEAK_ANTIALIASING_MSAA8X,MSAA 8x,MSAA 8x,MSAA 8x,MSAA 8x,MSAA 8x,MSAA 8x,MSAA 8x,MSAA 8x,MSAA 8x,MSAA 8x,MSAA 8x,MSAA 8x,MSAA 8x
+HDPEAK_ANISOTROPIC_FILTERING,Anisotropic Filtering,Filtrage anisotrope,Filtro anisotropico,Anisotrope Filterung,Filtrado anisotrópico,Filtrado anisotrópico,Filtragem anisotrópica,Анизотропная фильтрация,Анізотропна фільтрація,各向异性过滤,各向異性過濾,異方性フィルタリング,이방성 필터링
+HDPEAK_ANISOTROPIC_FILTERING_DISABLE,Disable,Désactiver,Disattiva,Deaktivieren,Desactivar,Desactivar,Desativar,Отключить,Вимкнути,禁用,禁用,無効,비활성화
+HDPEAK_ANISOTROPIC_FILTERING_ENABLE,Enable,Activer,Attiva,Aktivieren,Activar,Activar,Ativar,Включить,Увімкнути,启用,啟用,有効,활성화
+HDPEAK_ANISOTROPIC_FILTERING_FORCE_ENABLE,Force Enable,Forcer l'activation,Forza attivazione,Erzwingen,Forzar,Forzar,Forçar,Принудительно,Примусово,强制启用,強制啟用,強制有効,강제 활성화
+HDPEAK_TEXTURE_QUALITY,Texture Quality,Qualité des textures,Qualità texture,Texturqualität,Calidad de textura,Calidad de textura,Qualidade de textura,Качество текстур,Якість текстур,纹理质量,紋理品質,テクスチャ品質,텍스처 품질
+HDPEAK_TEXTURE_QUALITY_VERY_LOW,Very Low,Très faible,Molto bassa,Sehr niedrig,Muy baja,Muy baja,Muito baixa,Очень низкое,Дуже низька,极低,極低,非常低,매우 낮음
+HDPEAK_TEXTURE_QUALITY_LOW,Low,Faible,Bassa,Niedrig,Baja,Baja,Baixa,Низкое,Низька,低,低,低,낮음
+HDPEAK_TEXTURE_QUALITY_MEDIUM,Medium,Moyenne,Media,Mittel,Media,Media,Média,Среднее,Середня,中,中,中,중간
+HDPEAK_TEXTURE_QUALITY_HIGH,High,Haute,Alta,Hoch,Alta,Alta,Alta,Высокое,Висока,高,高,高,높음
+HDPEAK_TEXTURE_QUALITY_VERY_HIGH,Very High,Très haute,Molto alta,Sehr hoch,Muy alta,Muy alta,Muito alta,Очень высокое,Дуже висока,极高,極高,非常高,매우 높음
+HDPEAK_SHADOW_RESOLUTION,Shadow Resolution,Résolution des ombres,Risoluzione ombre,Schattenauflösung,Resolución de sombras,Resolución de sombras,Resolução de sombra,Разрешение теней,Роздільна здатність тіней,阴影分辨率,陰影解析度,シャドウ解像度,그림자 해상도
+HDPEAK_SHADOW_RESOLUTION_VERY_LOW,Very Low,Très faible,Molto bassa,Sehr niedrig,Muy baja,Muy baja,Muito baixa,Очень низкое,Дуже низька,极低,極低,非常低,매우 낮음
+HDPEAK_SHADOW_RESOLUTION_LOW,Low,Faible,Bassa,Niedrig,Baja,Baja,Baixa,Низкое,Низька,低,低,低,낮음
+HDPEAK_SHADOW_RESOLUTION_MEDIUM,Medium,Moyenne,Media,Mittel,Media,Media,Média,Среднее,Середня,中,中,中,중간
+HDPEAK_SHADOW_RESOLUTION_HIGH,High,Haute,Alta,Hoch,Alta,Alta,Alta,Высокое,Висока,高,高,高,높음
+HDPEAK_SHADOW_RESOLUTION_VERY_HIGH,Very High,Très haute,Molto alta,Sehr hoch,Muy alta,Muy alta,Muito alta,Очень высокое,Дуже висока,极高,極高,非常高,매우 높음
+HDPEAK_SHADOW_RESOLUTION_ULTRA,Ultra,Ultra,Ultra,Ultra,Ultra,Ultra,Ultra,Ультра,Ультра,超高,超高,ウルトラ,울트라
+HDPEAK_LOD_BIAS,LOD Bias,Biais LOD,Bias LOD,LOD-Bias,Sesgo LOD,Sesgo LOD,Sesgo LOD,Смещение LOD,Зсув LOD,LOD偏差,LOD偏差,LODバイアス,LOD 바이어스
+HDPEAK_OPAQUE_TEXTURE,Opaque Texture,Texture opaque,Texture opaca,Opake Textur,Textura opaca,Textura opaca,Textura opaca,Непрозрачная текстура,Непрозора текстура,不透明纹理,不透明紋理,不透明テクスチャ,불투명 텍스처
+HDPEAK_OPAQUE_TEXTURE_DISABLED,Disabled,Désactivé,Disattivato,Deaktiviert,Desactivado,Desactivado,Desativado,Отключено,Вимкнено,禁用,禁用,無効,비활성화
+HDPEAK_OPAQUE_TEXTURE_ENABLED,Enabled,Activé,Attivato,Aktiviert,Activado,Activado,Ativado,Включено,Увімкнено,启用,啟用,有効,활성화
+HDPEAK_MAX_ADDITIONAL_LIGHTS,Max Additional Lights,Lumières additionnelles max,Luci aggiuntive max,Max. zusätzliche Lichter,Luces adicionales máx,Luces adicionales máx,Luzes adicionais máx,Макс. доп. источников света,Макс. дод. джерел світла,最大附加光源,最大附加光源,追加ライト最大数,최대 추가 광원
+HDPEAK_MAX_ADDITIONAL_LIGHTS_VERY_LOW,Very Low,Très faible,Molto bassa,Sehr niedrig,Muy baja,Muy baja,Muito baixa,Очень низкое,Дуже низька,极低,極低,非常低,매우 낮음
+HDPEAK_MAX_ADDITIONAL_LIGHTS_LOW,Low,Faible,Bassa,Niedrig,Baja,Baja,Baixa,Низкое,Низька,低,低,低,낮음
+HDPEAK_MAX_ADDITIONAL_LIGHTS_MEDIUM,Medium,Moyenne,Media,Mittel,Media,Media,Média,Среднее,Середня,中,中,中,중간
+HDPEAK_MAX_ADDITIONAL_LIGHTS_HIGH,High,Haute,Alta,Hoch,Alta,Alta,Alta,Высокое,Висока,高,高,高,높음
+HDPEAK_MAX_ADDITIONAL_LIGHTS_VERY_HIGH,Very High,Très haute,Molto alta,Sehr hoch,Muy alta,Muy alta,Muito alta,Очень высокое,Дуже висока,极高,極高,非常高,매우 높음
+HDPEAK_DYNAMIC_BATCHING,Dynamic Batching,Lots dynamiques,Batching dinamico,Dynamisches Batching,Agrupación dinámica,Agrupación dinámica,Agrupamento dinâmico,Динамический батчинг,Динамічний батчинг,动态批处理,動態批次,ダイナミックバッチ,다이나믹 배칭
+HDPEAK_DYNAMIC_BATCHING_DISABLED,Disabled,Désactivé,Disattivato,Deaktiviert,Desactivado,Desactivado,Desativado,Отключено,Вимкнено,禁用,禁用,無効,비활성화
+HDPEAK_DYNAMIC_BATCHING_ENABLED,Enabled,Activé,Attivato,Aktiviert,Activado,Activado,Ativado,Включено,Увімкнено,启用,啟用,有効,활성화 

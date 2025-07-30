@@ -11,7 +11,7 @@
       https://api.nuget.org/v3/index.json;
       https://nuget.bepinex.dev/v3/index.json
     </RestoreAdditionalProjectSources>
-    <CopyLocalLockFileAssemblies>false</CopyLocalLockFileAssemblies>
+    <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
   </PropertyGroup>
 
   <PropertyGroup>
@@ -22,17 +22,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="docs\**\*.cs" />
+    <None Remove="docs\**\*.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="BepInEx.Analyzers" Version="1.*" PrivateAssets="all" />
     <PackageReference Include="BepInEx.Core" Version="5.*" />
-    <!-- PEAKLib Dependencies -->
-    <Reference Include="PEAKLib.Core">
-      <HintPath>$(PeakGamePath)\BepInEx\plugins\PEAKLib.Core.dll</HintPath>
-      <Private>false</Private>
-    </Reference>
-    <Reference Include="PEAKLib.Items">
-      <HintPath>$(PeakGamePath)\BepInEx\plugins\PEAKLib.Items.dll</HintPath>
-      <Private>false</Private>
-    </Reference>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
   </ItemGroup>
 
   <ItemGroup Condition="'$(TargetFramework.TrimEnd(`0123456789`))' == 'net'">
@@ -51,6 +48,18 @@
     </Reference>
     <Reference Include="UnityEngine.CoreModule">
       <HintPath>$(PeakGamePath)\PEAK_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.AnimationModule">
+      <HintPath>$(PeakGamePath)\PEAK_Data\Managed\UnityEngine.AnimationModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.ParticleSystemModule">
+      <HintPath>$(PeakGamePath)\PEAK_Data\Managed\UnityEngine.ParticleSystemModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="Unity.Mathematics">
+      <HintPath>$(PeakGamePath)\PEAK_Data\Managed\Unity.Mathematics.dll</HintPath>
       <Private>false</Private>
     </Reference>
   </ItemGroup>
@@ -134,24 +143,68 @@
     <Reference Include="UnityEngine.AudioModule">
       <HintPath>$(PeakGamePath)\PEAK_Data\Managed\UnityEngine.AudioModule.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEngine.UnityWebRequestModule">
+      <HintPath>$(PeakGamePath)\PEAK_Data\Managed\UnityEngine.UnityWebRequestModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UnityWebRequestAudioModule">
+      <HintPath>$(PeakGamePath)\PEAK_Data\Managed\UnityEngine.UnityWebRequestAudioModule.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEngine.DSPGraphModule">
       <HintPath>$(PeakGamePath)\PEAK_Data\Managed\UnityEngine.DSPGraphModule.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEngine.AssetBundleModule">
+      <HintPath>$(PeakGamePath)\PEAK_Data\Managed\UnityEngine.AssetBundleModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.PhysicsModule">
+      <HintPath>$(PeakGamePath)\PEAK_Data\Managed\UnityEngine.PhysicsModule.dll</HintPath>
+    </Reference>
+    <Reference Include="DOTween">
+      <HintPath>$(PeakGamePath)\PEAK_Data\Managed\DOTween.dll</HintPath>
+    </Reference>
+    <Reference Include="DOTweenPro">
+      <HintPath>$(PeakGamePath)\PEAK_Data\Managed\DOTweenPro.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.IMGUIModule">
+      <HintPath>$(PeakGamePath)\PEAK_Data\Managed\UnityEngine.IMGUIModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.InputLegacyModule">
+      <HintPath>$(PeakGamePath)\PEAK_Data\Managed\UnityEngine.InputLegacyModule.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web">
+      <HintPath>$(PeakGamePath)\PEAK_Data\Managed\System.Web.dll</HintPath>
+    </Reference>
+
+    <Reference Include="Sirenix.Serialization">
+      <HintPath>$(PeakGamePath)\PEAK_Data\Managed\Sirenix.Serialization.dll</HintPath>
+    </Reference>
+
+    <Reference Include="UnityEngine.TextCoreFontEngineModule">
+      <HintPath>$(PeakGamePath)\PEAK_Data\Managed\UnityEngine.TextCoreFontEngineModule.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
-  <!-- PostBuild: Copy DLL to plugins folder for testing -->
+  <!-- PostBuild: Copy DLL and dependencies to plugins folder for testing -->
   <Target Name="PostBuild" AfterTargets="PostBuildEvent" Condition="'$(Configuration)' == 'Release'">
     <ItemGroup>
       <OutputFiles Include="$(TargetPath)" />
+      <AssetBundleFiles Include="$(MSBuildProjectDirectory)\assets\climbtunes" />
     </ItemGroup>
     
-    <!-- Copy to plugins folder for testing -->
+    <!-- Copy main DLL to plugins folder -->
     <Copy SourceFiles="@(OutputFiles)" 
           DestinationFolder="$(PeakGamePath)\BepInEx\plugins\ClimbTunes\" 
           ContinueOnError="true" />
     
-    <Message Text="ClimbTunes.dll copied to:" Importance="high" />
+    
+    <!-- Copy AssetBundle to plugins folder -->
+    <Copy SourceFiles="@(AssetBundleFiles)" 
+          DestinationFolder="$(PeakGamePath)\BepInEx\plugins\ClimbTunes\assets\" 
+          ContinueOnError="true" />
+    
+    <Message Text="ClimbTunes.dll and dependencies copied to:" Importance="high" />
     <Message Text="  - $(PeakGamePath)\BepInEx\plugins\ClimbTunes\" Importance="high" />
+    <Message Text="AssetBundle copied to:" Importance="high" />
+    <Message Text="  - $(PeakGamePath)\BepInEx\plugins\ClimbTunes\assets\" Importance="high" />
   </Target>
 
 </Project>

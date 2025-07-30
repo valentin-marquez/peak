@@ -4,8 +4,8 @@
     <TargetFramework>net471</TargetFramework>
     <AssemblyTitle>HDPeak - Advanced Graphics Settings</AssemblyTitle>
     <AssemblyDescription>Transform your PEAK gaming experience with advanced Unity rendering controls. Fine-tune anti-aliasing, boost texture quality, optimize shadow resolution, control dynamic lighting, and master LOD settings through an intuitive in-game interface.</AssemblyDescription>
-    <AssemblyVersion>1.0.0</AssemblyVersion>
-    <FileVersion>1.0.0</FileVersion>
+    <AssemblyVersion>1.1.0</AssemblyVersion>
+    <FileVersion>1.1.0</FileVersion>
     <AssemblyCompany>nozz</AssemblyCompany>
     <AssemblyProduct>HDPeak</AssemblyProduct>
     <AssemblyCopyright>Copyright © 2025 nozz</AssemblyCopyright>
@@ -21,7 +21,7 @@
     <!-- Plugin Info for BepInEx -->
     <BepInExPluginGuid>com.nozz.hdpeak</BepInExPluginGuid>
     <BepInExPluginName>HDPeak</BepInExPluginName>
-    <BepInExPluginVersion>$(AssemblyVersion)</BepInExPluginVersion>
+    <BepInExPluginVersion>1.1.0</BepInExPluginVersion>
   </PropertyGroup>
 
   <ItemGroup>
@@ -118,6 +118,11 @@
     <Compile Remove="docs\**" />
     <EmbeddedResource Remove="docs\**" />
     <None Remove="docs\**" />
+  </ItemGroup>
+
+  <!-- Include localization CSV as embedded resource -->
+  <ItemGroup>
+    <EmbeddedResource Include="assets\Resources\Localization\Localized_Text.csv" />
   </ItemGroup>
 
   <!-- PostBuild: Copy DLL to plugins folder for testing -->

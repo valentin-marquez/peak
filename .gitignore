@@ -19,6 +19,7 @@ obj/
 mods/*/Release/*.dll
 mods/*/bin/
 mods/*/obj/
+*.manifest
 
 # =============================================================================
 # DISTRIBUTION & PACKAGING
@@ -128,6 +129,7 @@ Temporary Items
 *~
 .fuse_hidden*
 .directory
+CLAUDE.md
 .Trash-*
 .nfs*
 

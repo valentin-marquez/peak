@@ -1,0 +1,14 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "shell",
+			"label": "Build ClimbTunes (Release)",
+			"command": "dotnet build -c Release",
+			"group": "build",
+			"problemMatcher": [
+				"$msCompile"
+			]
+		}
+	]
+}

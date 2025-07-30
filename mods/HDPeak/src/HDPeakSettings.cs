@@ -8,9 +8,6 @@ using UnityEngine.Localization;
 
 namespace HDPeak.Settings
 {
-    /// <summary>
-    /// Anti-aliasing quality modes for reducing jagged edges
-    /// </summary>
     public enum AntialiasingMode
     {
         Off,
@@ -19,9 +16,6 @@ namespace HDPeak.Settings
         MSAA8x
     }
 
-    /// <summary>
-    /// Anisotropic filtering modes for improving texture quality at distance
-    /// </summary>
     public enum AnisotropicFilteringMode
     {
         Disable,
@@ -29,9 +23,6 @@ namespace HDPeak.Settings
         ForceEnable
     }
 
-    /// <summary>
-    /// Texture quality levels based on Unity's globalTextureMipmapLimit
-    /// </summary>
     public enum TextureQualityMode
     {
         VeryLow,    // Skip 4 mipmap levels (lowest quality)
@@ -41,9 +32,6 @@ namespace HDPeak.Settings
         VeryHigh    // No limit (full resolution, highest quality)
     }
 
-    /// <summary>
-    /// Shadow resolution quality levels for URP shadow maps
-    /// </summary>
     public enum ShadowResolutionMode
     {
         VeryLow,    // 256x256
@@ -54,18 +42,12 @@ namespace HDPeak.Settings
         Ultra       // 8192x8192
     }
 
-    /// <summary>
-    /// Camera opaque texture modes for URP rendering effects
-    /// </summary>
     public enum OpaqueTextureMode
     {
         Disabled,   // Better performance, no opaque texture
         Enabled     // Enables opaque texture for post-processing effects
     }
 
-    /// <summary>
-    /// Maximum additional lights count for dynamic lighting
-    /// </summary>
     public enum MaxLightsMode
     {
         VeryLow,    // 1 light
@@ -75,23 +57,17 @@ namespace HDPeak.Settings
         VeryHigh    // 8 lights
     }
 
-    /// <summary>
-    /// Dynamic batching modes for optimizing rendering of small objects
-    /// </summary>
     public enum DynamicBatchingMode
     {
         Disabled,   // Better for complex scenes
         Enabled     // Better for scenes with many small objects
     }
 
-    /// <summary>
-    /// Anti-aliasing setting for reducing jagged edges on 3D objects
-    /// </summary>
     public class AntiAliasingSetting : EnumSetting<AntialiasingMode>, IExposedSetting
     {
         public string GetDisplayName()
         {
-            return "Anti-Aliasing";
+            return LocalizedText.GetText("HDPEAK_ANTIALIASING");
         }
 
         public string GetCategory()
@@ -107,10 +83,10 @@ namespace HDPeak.Settings
         public override List<string> GetUnlocalizedChoices()
         {
             var choices = new List<string>();
-            choices.Add("Off");
-            choices.Add("MSAA 2x");
-            choices.Add("MSAA 4x");
-            choices.Add("MSAA 8x");
+            choices.Add(LocalizedText.GetText("HDPEAK_ANTIALIASING_OFF"));
+            choices.Add(LocalizedText.GetText("HDPEAK_ANTIALIASING_MSAA2X"));
+            choices.Add(LocalizedText.GetText("HDPEAK_ANTIALIASING_MSAA4X"));
+            choices.Add(LocalizedText.GetText("HDPEAK_ANTIALIASING_MSAA8X"));
             return choices;
         }
 
@@ -168,14 +144,11 @@ namespace HDPeak.Settings
         }
     }
 
-    /// <summary>
-    /// Anisotropic filtering setting for improving texture quality at distance
-    /// </summary>
     public class AnisotropicFilteringSetting : EnumSetting<AnisotropicFilteringMode>, IExposedSetting
     {
         public string GetDisplayName()
         {
-            return "Anisotropic Filtering";
+            return LocalizedText.GetText("HDPEAK_ANISOTROPIC_FILTERING");
         }
 
         public string GetCategory()
@@ -191,9 +164,9 @@ namespace HDPeak.Settings
         public override List<string> GetUnlocalizedChoices()
         {
             var choices = new List<string>();
-            choices.Add("Disable");
-            choices.Add("Enable");
-            choices.Add("Force Enable");
+            choices.Add(LocalizedText.GetText("HDPEAK_ANISOTROPIC_FILTERING_DISABLE"));
+            choices.Add(LocalizedText.GetText("HDPEAK_ANISOTROPIC_FILTERING_ENABLE"));
+            choices.Add(LocalizedText.GetText("HDPEAK_ANISOTROPIC_FILTERING_FORCE_ENABLE"));
             return choices;
         }
 
@@ -222,14 +195,11 @@ namespace HDPeak.Settings
         }
     }
 
-    /// <summary>
-    /// Texture quality setting for controlling texture resolution
-    /// </summary>
     public class TextureQualitySetting : EnumSetting<TextureQualityMode>, IExposedSetting
     {
         public string GetDisplayName()
         {
-            return "Texture Quality";
+            return LocalizedText.GetText("HDPEAK_TEXTURE_QUALITY");
         }
 
         public string GetCategory()
@@ -245,11 +215,11 @@ namespace HDPeak.Settings
         public override List<string> GetUnlocalizedChoices()
         {
             var choices = new List<string>();
-            choices.Add("Very Low");
-            choices.Add("Low");
-            choices.Add("Medium");
-            choices.Add("High");
-            choices.Add("Very High");
+            choices.Add(LocalizedText.GetText("HDPEAK_TEXTURE_QUALITY_VERY_LOW"));
+            choices.Add(LocalizedText.GetText("HDPEAK_TEXTURE_QUALITY_LOW"));
+            choices.Add(LocalizedText.GetText("HDPEAK_TEXTURE_QUALITY_MEDIUM"));
+            choices.Add(LocalizedText.GetText("HDPEAK_TEXTURE_QUALITY_HIGH"));
+            choices.Add(LocalizedText.GetText("HDPEAK_TEXTURE_QUALITY_VERY_HIGH"));
             return choices;
         }
 
@@ -286,14 +256,11 @@ namespace HDPeak.Settings
         }
     }
 
-    /// <summary>
-    /// Shadow resolution setting for controlling shadow map quality
-    /// </summary>
     public class ShadowResolutionSetting : EnumSetting<ShadowResolutionMode>, IExposedSetting
     {
         public string GetDisplayName()
         {
-            return "Shadow Resolution";
+            return LocalizedText.GetText("HDPEAK_SHADOW_RESOLUTION");
         }
 
         public string GetCategory()
@@ -309,12 +276,12 @@ namespace HDPeak.Settings
         public override List<string> GetUnlocalizedChoices()
         {
             var choices = new List<string>();
-            choices.Add("Very Low");
-            choices.Add("Low");
-            choices.Add("Medium");
-            choices.Add("High");
-            choices.Add("Very High");
-            choices.Add("Ultra");
+            choices.Add(LocalizedText.GetText("HDPEAK_SHADOW_RESOLUTION_VERY_LOW"));
+            choices.Add(LocalizedText.GetText("HDPEAK_SHADOW_RESOLUTION_LOW"));
+            choices.Add(LocalizedText.GetText("HDPEAK_SHADOW_RESOLUTION_MEDIUM"));
+            choices.Add(LocalizedText.GetText("HDPEAK_SHADOW_RESOLUTION_HIGH"));
+            choices.Add(LocalizedText.GetText("HDPEAK_SHADOW_RESOLUTION_VERY_HIGH"));
+            choices.Add(LocalizedText.GetText("HDPEAK_SHADOW_RESOLUTION_ULTRA"));
             return choices;
         }
 
@@ -356,14 +323,11 @@ namespace HDPeak.Settings
         }
     }
 
-    /// <summary>
-    /// LOD bias setting for controlling model detail distance
-    /// </summary>
     public class LODBiasSetting : FloatSetting, IExposedSetting
     {
         public string GetDisplayName()
         {
-            return "LOD Bias";
+            return LocalizedText.GetText("HDPEAK_LOD_BIAS");
         }
 
         public string GetCategory()
@@ -387,14 +351,11 @@ namespace HDPeak.Settings
         }
     }
 
-    /// <summary>
-    /// Opaque texture setting for controlling URP camera opaque texture
-    /// </summary>
     public class OpaqueTextureSetting : EnumSetting<OpaqueTextureMode>, IExposedSetting
     {
         public string GetDisplayName()
         {
-            return "Opaque Texture";
+            return LocalizedText.GetText("HDPEAK_OPAQUE_TEXTURE");
         }
 
         public string GetCategory()
@@ -410,8 +371,8 @@ namespace HDPeak.Settings
         public override List<string> GetUnlocalizedChoices()
         {
             var choices = new List<string>();
-            choices.Add("Disabled");
-            choices.Add("Enabled");
+            choices.Add(LocalizedText.GetText("HDPEAK_OPAQUE_TEXTURE_DISABLED"));
+            choices.Add(LocalizedText.GetText("HDPEAK_OPAQUE_TEXTURE_ENABLED"));
             return choices;
         }
 
@@ -431,14 +392,11 @@ namespace HDPeak.Settings
         }
     }
 
-    /// <summary>
-    /// Maximum additional lights setting for controlling dynamic lighting
-    /// </summary>
     public class MaxLightsSetting : EnumSetting<MaxLightsMode>, IExposedSetting
     {
         public string GetDisplayName()
         {
-            return "Max Additional Lights";
+            return LocalizedText.GetText("HDPEAK_MAX_ADDITIONAL_LIGHTS");
         }
 
         public string GetCategory()
@@ -454,11 +412,11 @@ namespace HDPeak.Settings
         public override List<string> GetUnlocalizedChoices()
         {
             var choices = new List<string>();
-            choices.Add("Very Low");
-            choices.Add("Low");
-            choices.Add("Medium");
-            choices.Add("High");
-            choices.Add("Very High");
+            choices.Add(LocalizedText.GetText("HDPEAK_MAX_ADDITIONAL_LIGHTS_VERY_LOW"));
+            choices.Add(LocalizedText.GetText("HDPEAK_MAX_ADDITIONAL_LIGHTS_LOW"));
+            choices.Add(LocalizedText.GetText("HDPEAK_MAX_ADDITIONAL_LIGHTS_MEDIUM"));
+            choices.Add(LocalizedText.GetText("HDPEAK_MAX_ADDITIONAL_LIGHTS_HIGH"));
+            choices.Add(LocalizedText.GetText("HDPEAK_MAX_ADDITIONAL_LIGHTS_VERY_HIGH"));
             return choices;
         }
 
@@ -497,14 +455,11 @@ namespace HDPeak.Settings
         }
     }
 
-    /// <summary>
-    /// Dynamic batching setting for optimizing rendering of small objects
-    /// </summary>
     public class DynamicBatchingSetting : EnumSetting<DynamicBatchingMode>, IExposedSetting
     {
         public string GetDisplayName()
         {
-            return "Dynamic Batching";
+            return LocalizedText.GetText("HDPEAK_DYNAMIC_BATCHING");
         }
 
         public string GetCategory()
@@ -520,8 +475,8 @@ namespace HDPeak.Settings
         public override List<string> GetUnlocalizedChoices()
         {
             var choices = new List<string>();
-            choices.Add("Disabled");
-            choices.Add("Enabled");
+            choices.Add(LocalizedText.GetText("HDPEAK_DYNAMIC_BATCHING_DISABLED"));
+            choices.Add(LocalizedText.GetText("HDPEAK_DYNAMIC_BATCHING_ENABLED"));
             return choices;
         }
 
