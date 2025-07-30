@@ -1,5 +1,4 @@
 <Project Sdk="Microsoft.NET.Sdk">
-
   <PropertyGroup>
     <TargetFramework>net471</TargetFramework>
     <AssemblyTitle>HDPeak - Advanced Graphics Settings</AssemblyTitle>
@@ -35,6 +34,13 @@
 
   <!-- Essential PEAK game references -->
   <ItemGroup>
+    <!-- relative project dependency -->
+    <Reference Include="SettingsExtender"> 
+      <HintPath>deps\SettingsExtender.dll</HintPath> <!-- version: 0.1.4 -->
+      <Private>true</Private>
+    </Reference>
+
+    <!-- base assemblies -->
     <Reference Include="Assembly-CSharp">
       <HintPath>$(PeakGamePath)\PEAK_Data\Managed\Assembly-CSharp.dll</HintPath>
       <Private>false</Private>

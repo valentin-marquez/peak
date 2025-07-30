@@ -11,7 +11,11 @@
     <Copyright>Copyright © 2025 Nozz</Copyright>
     
     <!-- Rutas del juego -->
-    <PeakGamePath Condition="'$(PeakGamePath)' == ''">D:\SteamLibrary\steamapps\common\PEAK</PeakGamePath>
+    <!-- 
+        NOTE: Hey @valentin-marquez, Ive changed the game path to the C drive for sake of simplicity for other collaborators in the future.
+        But you can potentially use "HKEY_CURRENT_USER\Software\Valve\Steam" registry key to get the path dynamically if you want to make this repo more flexible
+        -->
+    <PeakGamePath Condition="'$(PeakGamePath)' == ''">C:\Program Files (x86)\Steam\steamapps\common\PEAK</PeakGamePath> 
     <BepInExPath>$(PeakGamePath)\BepInEx</BepInExPath>
     <ManagedPath>$(PeakGamePath)\PEAK_Data\Managed</ManagedPath>
   </PropertyGroup>
