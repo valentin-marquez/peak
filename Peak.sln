@@ -1,0 +1,6 @@
+﻿Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HDPeak", "mods\HDPeak\HDPeak.csproj", "{F321F7C9-0621-41F5-B1A0-AB55D6F78059}"
+EndProject
+Global
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+	EndGlobalSection
+EndGlobal

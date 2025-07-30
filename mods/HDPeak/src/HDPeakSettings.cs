@@ -5,6 +5,7 @@ using UnityEngine.Rendering;
 using Zorro.Settings;
 using System.Collections.Generic;
 using UnityEngine.Localization;
+using SettingsExtender;
 
 namespace HDPeak.Settings
 {
@@ -87,40 +88,14 @@ namespace HDPeak.Settings
     /// <summary>
     /// Anti-aliasing setting for reducing jagged edges on 3D objects
     /// </summary>
-    public class AntiAliasingSetting : EnumSetting<AntialiasingMode>, IExposedSetting
+    [ExtenderSetting(page: "HDPeak", displayName: "Anti-Aliasing")]
+    public class AntiAliasingSetting : ExtenderEnumSetting<AntialiasingMode>
     {
-        public string GetDisplayName()
-        {
-            return "Anti-Aliasing";
-        }
+        protected override AntialiasingMode GetDefaultValue() => AntialiasingMode.MSAA2x;
 
-        public string GetCategory()
-        {
-            return HDPeak.HDPeakSettingsRegistry.GetPageId("HDPeak");
-        }
+        public override List<LocalizedString> GetLocalizedChoices() => null;
 
-        public override List<LocalizedString> GetLocalizedChoices()
-        {
-            return null; // Use unlocalized choices (enum names)
-        }
-
-        public override List<string> GetUnlocalizedChoices()
-        {
-            var choices = new List<string>();
-            choices.Add("Off");
-            choices.Add("MSAA 2x");
-            choices.Add("MSAA 4x");
-            choices.Add("MSAA 8x");
-            return choices;
-        }
-
-        protected override AntialiasingMode GetDefaultValue()
-        {
-            return AntialiasingMode.MSAA2x;
-        }
-
-        public override void ApplyValue()
-        {
+        public AntiAliasingSetting() : base(Value => {
             var currentRP = QualitySettings.renderPipeline as UniversalRenderPipelineAsset;
             if (currentRP == null)
             {
@@ -165,45 +140,20 @@ namespace HDPeak.Settings
                     currentRP.msaaSampleCount = 2;
                     break;
             }
-        }
+        }) {}
     }
 
     /// <summary>
     /// Anisotropic filtering setting for improving texture quality at distance
     /// </summary>
-    public class AnisotropicFilteringSetting : EnumSetting<AnisotropicFilteringMode>, IExposedSetting
+    [ExtenderSetting(page: "HDPeak", displayName: "Anisotropic Filtering")]
+    public class AnisotropicFilteringSetting : ExtenderEnumSetting<AnisotropicFilteringMode>
     {
-        public string GetDisplayName()
-        {
-            return "Anisotropic Filtering";
-        }
+        protected override AnisotropicFilteringMode GetDefaultValue() => AnisotropicFilteringMode.Enable;
 
-        public string GetCategory()
-        {
-            return HDPeak.HDPeakSettingsRegistry.GetPageId("HDPeak");
-        }
+        public override List<LocalizedString> GetLocalizedChoices() => null;
 
-        public override List<LocalizedString> GetLocalizedChoices()
-        {
-            return null; // Use unlocalized choices
-        }
-
-        public override List<string> GetUnlocalizedChoices()
-        {
-            var choices = new List<string>();
-            choices.Add("Disable");
-            choices.Add("Enable");
-            choices.Add("Force Enable");
-            return choices;
-        }
-
-        protected override AnisotropicFilteringMode GetDefaultValue()
-        {
-            return AnisotropicFilteringMode.Enable;
-        }
-
-        public override void ApplyValue()
-        {
+        public AnisotropicFilteringSetting() : base(Value => {
             switch (Value)
             {
                 case AnisotropicFilteringMode.Disable:
@@ -219,47 +169,20 @@ namespace HDPeak.Settings
                     QualitySettings.anisotropicFiltering = AnisotropicFiltering.Enable;
                     break;
             }
-        }
+        }) {}
     }
 
     /// <summary>
     /// Texture quality setting for controlling texture resolution
     /// </summary>
-    public class TextureQualitySetting : EnumSetting<TextureQualityMode>, IExposedSetting
+    [ExtenderSetting(page: "HDPeak", displayName: "Texture Quality")]
+    public class TextureQualitySetting : ExtenderEnumSetting<TextureQualityMode>
     {
-        public string GetDisplayName()
-        {
-            return "Texture Quality";
-        }
+        protected override TextureQualityMode GetDefaultValue() => TextureQualityMode.High;
 
-        public string GetCategory()
-        {
-            return HDPeak.HDPeakSettingsRegistry.GetPageId("HDPeak");
-        }
+        public override List<LocalizedString> GetLocalizedChoices() => null;
 
-        public override List<LocalizedString> GetLocalizedChoices()
-        {
-            return null; // Use unlocalized choices
-        }
-
-        public override List<string> GetUnlocalizedChoices()
-        {
-            var choices = new List<string>();
-            choices.Add("Very Low");
-            choices.Add("Low");
-            choices.Add("Medium");
-            choices.Add("High");
-            choices.Add("Very High");
-            return choices;
-        }
-
-        protected override TextureQualityMode GetDefaultValue()
-        {
-            return TextureQualityMode.High;
-        }
-
-        public override void ApplyValue()
-        {
+        public TextureQualitySetting() : base(Value => {
             // Lower mipmap limit = higher quality (0 = full resolution)
             // Higher mipmap limit = lower quality (skip more mipmap levels)
             switch (Value)
@@ -283,48 +206,20 @@ namespace HDPeak.Settings
                     QualitySettings.globalTextureMipmapLimit = 1;
                     break;
             }
-        }
+        }) {}
     }
 
     /// <summary>
     /// Shadow resolution setting for controlling shadow map quality
     /// </summary>
-    public class ShadowResolutionSetting : EnumSetting<ShadowResolutionMode>, IExposedSetting
+    [ExtenderSetting(page: "HDPeak", displayName: "Shadow Resolution")]
+    public class ShadowResolutionSetting : ExtenderEnumSetting<ShadowResolutionMode>
     {
-        public string GetDisplayName()
-        {
-            return "Shadow Resolution";
-        }
+        protected override ShadowResolutionMode GetDefaultValue() => ShadowResolutionMode.Medium;
 
-        public string GetCategory()
-        {
-            return HDPeak.HDPeakSettingsRegistry.GetPageId("HDPeak");
-        }
+        public override List<LocalizedString> GetLocalizedChoices() => null;
 
-        public override List<LocalizedString> GetLocalizedChoices()
-        {
-            return null; // Use unlocalized choices
-        }
-
-        public override List<string> GetUnlocalizedChoices()
-        {
-            var choices = new List<string>();
-            choices.Add("Very Low");
-            choices.Add("Low");
-            choices.Add("Medium");
-            choices.Add("High");
-            choices.Add("Very High");
-            choices.Add("Ultra");
-            return choices;
-        }
-
-        protected override ShadowResolutionMode GetDefaultValue()
-        {
-            return ShadowResolutionMode.Medium;
-        }
-
-        public override void ApplyValue()
-        {
+        public ShadowResolutionSetting() : base(Value => {
             var urpAsset = QualitySettings.renderPipeline as UniversalRenderPipelineAsset;
             if (urpAsset != null)
             {
@@ -353,122 +248,54 @@ namespace HDPeak.Settings
                         break;
                 }
             }
-        }
+        }) {}
     }
 
     /// <summary>
     /// LOD bias setting for controlling model detail distance
     /// </summary>
-    public class LODBiasSetting : FloatSetting, IExposedSetting
+    [ExtenderSetting(page: "HDPeak", displayName: "LOD Bias")]
+    public class LODBiasSetting : ExtenderFloatSetting
     {
-        public string GetDisplayName()
-        {
-            return "LOD Bias";
-        }
+        protected override float GetDefaultValue() => 1.0f;
+        protected override float2 GetMinMaxValue() => new float2(0.5f, 2.0f);
 
-        public string GetCategory()
-        {
-            return HDPeak.HDPeakSettingsRegistry.GetPageId("HDPeak");
-        }
-
-        protected override float GetDefaultValue()
-        {
-            return 1.0f;
-        }
-
-        protected override float2 GetMinMaxValue()
-        {
-            return new float2(0.5f, 2.0f);
-        }
-
-        public override void ApplyValue()
-        {
+        public LODBiasSetting() : base(Value => {
             QualitySettings.lodBias = Value;
-        }
+        }) {}
     }
 
     /// <summary>
     /// Opaque texture setting for controlling URP camera opaque texture
     /// </summary>
-    public class OpaqueTextureSetting : EnumSetting<OpaqueTextureMode>, IExposedSetting
+    [ExtenderSetting(page: "HDPeak", displayName: "Opaque Texture")]
+    public class OpaqueTextureSetting : ExtenderEnumSetting<OpaqueTextureMode>
     {
-        public string GetDisplayName()
-        {
-            return "Opaque Texture";
-        }
+        protected override OpaqueTextureMode GetDefaultValue() => OpaqueTextureMode.Disabled;
 
-        public string GetCategory()
-        {
-            return HDPeak.HDPeakSettingsRegistry.GetPageId("HDPeak");
-        }
+        public override List<LocalizedString> GetLocalizedChoices() => null;
 
-        public override List<LocalizedString> GetLocalizedChoices()
-        {
-            return null; // Use unlocalized choices
-        }
-
-        public override List<string> GetUnlocalizedChoices()
-        {
-            var choices = new List<string>();
-            choices.Add("Disabled");
-            choices.Add("Enabled");
-            return choices;
-        }
-
-        protected override OpaqueTextureMode GetDefaultValue()
-        {
-            return OpaqueTextureMode.Disabled;
-        }
-
-        public override void ApplyValue()
-        {
+        public OpaqueTextureSetting() : base(Value => {
             var urpAsset = QualitySettings.renderPipeline as UniversalRenderPipelineAsset;
             if (urpAsset != null)
             {
                 bool enableOpaque = Value == OpaqueTextureMode.Enabled;
                 urpAsset.supportsCameraOpaqueTexture = enableOpaque;
             }
-        }
+        }) {}
     }
 
     /// <summary>
     /// Maximum additional lights setting for controlling dynamic lighting
     /// </summary>
-    public class MaxLightsSetting : EnumSetting<MaxLightsMode>, IExposedSetting
+    [ExtenderSetting(page: "HDPeak", displayName: "Max Additional Lights")]
+    public class MaxLightsSetting : ExtenderEnumSetting<MaxLightsMode>
     {
-        public string GetDisplayName()
-        {
-            return "Max Additional Lights";
-        }
+        protected override MaxLightsMode GetDefaultValue() => MaxLightsMode.Medium;
 
-        public string GetCategory()
-        {
-            return HDPeak.HDPeakSettingsRegistry.GetPageId("HDPeak");
-        }
+        public override List<LocalizedString> GetLocalizedChoices() => null;
 
-        public override List<LocalizedString> GetLocalizedChoices()
-        {
-            return null; // Use unlocalized choices
-        }
-
-        public override List<string> GetUnlocalizedChoices()
-        {
-            var choices = new List<string>();
-            choices.Add("Very Low");
-            choices.Add("Low");
-            choices.Add("Medium");
-            choices.Add("High");
-            choices.Add("Very High");
-            return choices;
-        }
-
-        protected override MaxLightsMode GetDefaultValue()
-        {
-            return MaxLightsMode.Medium;
-        }
-
-        public override void ApplyValue()
-        {
+        public MaxLightsSetting() : base(Value => {
             var urpAsset = QualitySettings.renderPipeline as UniversalRenderPipelineAsset;
             if (urpAsset != null)
             {
@@ -494,50 +321,26 @@ namespace HDPeak.Settings
                         break;
                 }
             }
-        }
+        }) {}
     }
 
     /// <summary>
     /// Dynamic batching setting for optimizing rendering of small objects
     /// </summary>
-    public class DynamicBatchingSetting : EnumSetting<DynamicBatchingMode>, IExposedSetting
+    [ExtenderSetting(page: "HDPeak", displayName: "Dynamic Batching")]
+    public class DynamicBatchingSetting : ExtenderEnumSetting<DynamicBatchingMode>
     {
-        public string GetDisplayName()
-        {
-            return "Dynamic Batching";
-        }
+        protected override DynamicBatchingMode GetDefaultValue() => DynamicBatchingMode.Disabled;
 
-        public string GetCategory()
-        {
-            return HDPeak.HDPeakSettingsRegistry.GetPageId("HDPeak");
-        }
+        public override List<LocalizedString> GetLocalizedChoices() => null;
 
-        public override List<LocalizedString> GetLocalizedChoices()
-        {
-            return null; // Use unlocalized choices
-        }
-
-        public override List<string> GetUnlocalizedChoices()
-        {
-            var choices = new List<string>();
-            choices.Add("Disabled");
-            choices.Add("Enabled");
-            return choices;
-        }
-
-        protected override DynamicBatchingMode GetDefaultValue()
-        {
-            return DynamicBatchingMode.Disabled;
-        }
-
-        public override void ApplyValue()
-        {
+        public DynamicBatchingSetting() : base(Value => {
             var urpAsset = QualitySettings.renderPipeline as UniversalRenderPipelineAsset;
             if (urpAsset != null)
             {
                 bool enableBatching = Value == DynamicBatchingMode.Enabled;
                 urpAsset.supportsDynamicBatching = enableBatching;
             }
-        }
+        }) {}
     }
 }
