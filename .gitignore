@@ -294,3 +294,22 @@ pids/
 #
 # Developer-specific paths in Directory.Build.props should be configured
 # locally but the file structure is tracked for consistency.
+# =============================================================================
+# BUN / NODE / NPM SPECIFIC
+# =============================================================================
+
+# Bun
+.bun/
+bun.lockb
+
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+yarn.lock
+package-lock.json
+
+# Bun cache
+.cache/
+.bun-cache/
