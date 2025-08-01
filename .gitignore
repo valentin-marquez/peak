@@ -15,6 +15,10 @@ obj/
 *.cache
 *.userprefs
 
+# Local user configuration files
+Directory.Build.props.user
+*.props.user
+
 # Generated DLLs in Release directories (auto-generated content)
 mods/*/Release/*.dll
 mods/*/bin/
