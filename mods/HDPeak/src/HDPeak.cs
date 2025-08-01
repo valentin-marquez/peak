@@ -20,14 +20,14 @@ namespace HDPeak
     {
         internal const string PLUGIN_GUID = "com.nozz.hdpeak";
         internal const string PLUGIN_NAME = "HDPeak";
-        internal const string PLUGIN_VERSION = "1.1.0";
+        internal const string PLUGIN_VERSION = "1.2.2";
     }
 
     /// <summary>
     /// Main plugin class for HDPeak - Advanced graphics settings mod for PEAK
     /// </summary>
     [BepInPlugin(HDPeakPluginInfo.PLUGIN_GUID, HDPeakPluginInfo.PLUGIN_NAME, HDPeakPluginInfo.PLUGIN_VERSION)]
-    [BepInDependency("com.pharmacomaniac.settingsextenderforked")]
+    [BepInDependency("com.pharmacomaniac.settingsextenderforked", BepInDependency.DependencyFlags.HardDependency)]
     public class HDPeakPlugin : BaseUnityPlugin
     {
         internal static new ManualLogSource Logger;
