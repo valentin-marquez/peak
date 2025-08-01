@@ -257,7 +257,7 @@ namespace HDPeak.Settings
     [ExtenderSetting(page: "HDPeak", displayName: "LOD Bias")]
     public class LODBiasSetting : ExtenderFloatSetting
     {
-        protected override float GetDefaultValue() => 1.0f;
+        protected override float GetDefaultValue() => 0;
         protected override float2 GetMinMaxValue() => new float2(0.5f, 2.0f);
 
         public LODBiasSetting() : base(Value => {
@@ -341,6 +341,26 @@ namespace HDPeak.Settings
                 bool enableBatching = Value == DynamicBatchingMode.Enabled;
                 urpAsset.supportsDynamicBatching = enableBatching;
             }
+        }) {}
+    }
+    
+    /// <summary>
+    /// Camera culling distance for controlling how far objects are rendered
+    /// </summary>
+    [ExtenderSetting(page: "HDPeak", displayName: "Culling Distance")]
+    public class CullingDistanceSetting : ExtenderFloatSetting
+    {
+        protected override float GetDefaultValue() => 1500;
+        protected override float2 GetMinMaxValue() => new float2(50f, 1500f);
+
+        public override void Load(ISettingsSaveLoad loader)
+        {
+            base.Load(loader);
+            HDPeak.Patches.MainCameraPatches.SetFarClipDistance((int)Value);
+        }
+
+        public CullingDistanceSetting() : base(Value => {
+            HDPeak.Patches.MainCameraPatches.SetFarClipDistance((int)Value);
         }) {}
     }
 }
