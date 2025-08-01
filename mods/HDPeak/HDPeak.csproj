@@ -131,19 +131,32 @@
     <EmbeddedResource Include="assets\Resources\Localization\Localized_Text.csv" />
   </ItemGroup>
 
-  <!-- PostBuild: Copy DLL to plugins folder for testing -->
+  <!-- PostBuild: Copy DLL and dependencies to plugins folder for testing -->
   <Target Name="PostBuild" AfterTargets="PostBuildEvent" Condition="'$(Configuration)' == 'Release'">
     <ItemGroup>
       <OutputFiles Include="$(TargetPath)" />
+      <!-- Include SettingsExtender dependency -->
+      <DependencyFiles Include="deps\SettingsExtender.dll" />
     </ItemGroup>
     
-    <!-- Copy to plugins folder for testing -->
+    <!-- Ensure plugin directory exists -->
+    <MakeDir Directories="$(PeakGamePath)\BepInEx\plugins\HDPeak\" ContinueOnError="true" />
+    
+    <!-- Copy main DLL to plugins folder -->
     <Copy SourceFiles="@(OutputFiles)" 
           DestinationFolder="$(PeakGamePath)\BepInEx\plugins\HDPeak\" 
           ContinueOnError="true" />
     
-    <Message Text="HDPeak.dll copied to:" Importance="high" />
+    <!-- Copy dependencies to plugins folder -->
+    <Copy SourceFiles="@(DependencyFiles)" 
+          DestinationFolder="$(PeakGamePath)\BepInEx\plugins\HDPeak\" 
+          ContinueOnError="true" />
+    
+    <Message Text="HDPeak.dll and dependencies copied to:" Importance="high" />
     <Message Text="  - $(PeakGamePath)\BepInEx\plugins\HDPeak\" Importance="high" />
+    <Message Text="Files copied:" Importance="high" />
+    <Message Text="  - HDPeak.dll" Importance="high" />
+    <Message Text="  - SettingsExtender.dll" Importance="high" />
   </Target>
 
 </Project>

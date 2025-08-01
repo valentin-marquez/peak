@@ -1,21 +1,25 @@
 <Project>
   <PropertyGroup>
-    <!-- Configuración global para mods de PEAK -->
+    <!-- Global configuration for PEAK mods -->
     <TargetFramework>net462</TargetFramework>
     <LangVersion>latest</LangVersion>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     
-    <!-- Información del autor -->
+    <!-- Author information -->
     <Authors>Nozz (Valentin Marquez)</Authors>
     <Company>Nozz</Company>
     <Copyright>Copyright © 2025 Nozz</Copyright>
     
-    <!-- Rutas del juego -->
-    <!-- 
-        NOTE: Hey @valentin-marquez, Ive changed the game path to the C drive for sake of simplicity for other collaborators in the future.
-        But you can potentially use "HKEY_CURRENT_USER\Software\Valve\Steam" registry key to get the path dynamically if you want to make this repo more flexible
-        -->
-    <PeakGamePath Condition="'$(PeakGamePath)' == ''">C:\Program Files (x86)\Steam\steamapps\common\PEAK</PeakGamePath> 
+    <!-- Game paths - Automatic Steam detection -->
+    <!-- Users can override PeakGamePath in Directory.Build.props.user if needed. -->
+    <SteamPath Condition="'$(SteamPath)' == ''">$([MSBuild]::GetRegistryValue('HKEY_CURRENT_USER\SOFTWARE\Valve\Steam', 'SteamPath'))</SteamPath>
+    <SteamPath Condition="'$(SteamPath)' == '' AND Exists('C:\Program Files (x86)\Steam')">C:\Program Files (x86)\Steam</SteamPath>
+    <SteamPath Condition="'$(SteamPath)' == '' AND Exists('C:\Program Files\Steam')">C:\Program Files\Steam</SteamPath>
+    <PeakGamePath Condition="'$(PeakGamePath)' == '' AND '$(SteamPath)' != '' AND Exists('$(SteamPath)\steamapps\common\PEAK')">$(SteamPath)\steamapps\common\PEAK</PeakGamePath>
+    <PeakGamePath Condition="'$(PeakGamePath)' == '' AND Exists('D:\SteamLibrary\steamapps\common\PEAK')">D:\SteamLibrary\steamapps\common\PEAK</PeakGamePath>
+    <PeakGamePath Condition="'$(PeakGamePath)' == '' AND Exists('E:\SteamLibrary\steamapps\common\PEAK')">E:\SteamLibrary\steamapps\common\PEAK</PeakGamePath>
+    <PeakGamePath Condition="'$(PeakGamePath)' == '' AND Exists('F:\SteamLibrary\steamapps\common\PEAK')">F:\SteamLibrary\steamapps\common\PEAK</PeakGamePath>
+    <PeakGamePath Condition="'$(PeakGamePath)' == ''">C:\Program Files (x86)\Steam\steamapps\common\PEAK</PeakGamePath>
     <BepInExPath>$(PeakGamePath)\BepInEx</BepInExPath>
     <ManagedPath>$(PeakGamePath)\PEAK_Data\Managed</ManagedPath>
   </PropertyGroup>
@@ -26,7 +30,6 @@
     <Optimize>true</Optimize>
   </PropertyGroup>
 
-  <!-- Referencias básicas de BepInEx -->
   <ItemGroup>
     <Reference Include="BepInEx">
       <HintPath>$(BepInExPath)\core\BepInEx.dll</HintPath>
@@ -34,7 +37,6 @@
     </Reference>
   </ItemGroup>
 
-  <!-- Suprimir advertencias comunes de Unity -->
   <PropertyGroup>
     <NoWarn>$(NoWarn);CS0618;CS0649;CS0169</NoWarn>
   </PropertyGroup>
